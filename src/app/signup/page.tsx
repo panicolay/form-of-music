@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function SignUp() {
   const router = useRouter();
@@ -72,6 +73,9 @@ export default function SignUp() {
             >
               Sign Up
             </button>
+            <Link href="/">
+              Cancel
+            </Link>
           </div>
         </form>
     
