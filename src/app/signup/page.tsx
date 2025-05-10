@@ -20,6 +20,7 @@ export default function SignUp() {
   return (
     <div className="
         space-y-10
+        max-w-md mx-auto
     ">
         <h2 className="
             font-poppins font-medium
