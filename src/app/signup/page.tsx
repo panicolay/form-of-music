@@ -1,12 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Field } from '../components/ui';
 
 export default function SignUp() {
-  const router = useRouter();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
