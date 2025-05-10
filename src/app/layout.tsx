@@ -29,7 +29,6 @@ export default function RootLayout({
         ${inter.variable} ${poppins.variable}
         `}>
         <main className="
-          min-h-screen
           pt-20 pb-10 px-4
         ">
           {children}

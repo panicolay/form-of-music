@@ -25,7 +25,7 @@ export default function SignUp() {
             font-poppins font-medium
             text-4xl uppercase
         ">
-            Create an account
+            Create <br />an account
         </h2>
         
         <form onSubmit={handleSubmit}
