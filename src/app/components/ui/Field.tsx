@@ -25,6 +25,7 @@ export function Field({
             transition-colors duration-200 ease-in-out
         ">
             <span className="
+                font-poppins
                 text-sm text-zinc-400 uppercase
                 group-focus-within:text-zinc-300
                 transition-colors duration-200 ease-in-out
