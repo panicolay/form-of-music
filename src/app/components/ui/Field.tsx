@@ -39,6 +39,7 @@ export function Field({
                 name={name}
                 type={type}
                 className={`
+                    outline-none
                     ${error ? 'border-red-500' : 'border-zinc-300'}
                     ${props.className || ''}
                 `}
