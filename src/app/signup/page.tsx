@@ -18,8 +18,13 @@ export default function SignUp() {
   };
 
   return (
-    <div>
-        <h2>
+    <div className="
+        space-y-10
+    ">
+        <h2 className="
+            font-poppins font-medium
+            text-4xl uppercase
+        ">
             Create an account
         </h2>
         
