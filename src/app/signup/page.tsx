@@ -17,6 +17,7 @@ export default function SignUp() {
     console.log('Form submitted:', formData);
   };
 
+  // TODO: Regarder ce que sont max-w-md et mx-auto et comment les utiliser (Tailwind CSS)
   return (
     <div className="
         space-y-10
