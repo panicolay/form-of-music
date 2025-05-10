@@ -1,4 +1,5 @@
 import React from 'react';
+import { Label } from 'radix-ui';
 
 type InputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'url';
 
@@ -15,26 +16,10 @@ export function Field({
     type = 'text',
     ...props 
 }: FieldProps) {
-    const inputRef = React.useRef<HTMLInputElement>(null);
-
-    const handleClick = () => {
-        inputRef.current?.focus();
-    };
-
     return (
-        <div 
-            className="flex flex-col p-4 gap-1"
-            onClick={handleClick}
-            role="group"
-        >
-            <label 
-                htmlFor={name}
-                className=""
-            >
-                {label}
-            </label>
+        <Label.Root className="flex flex-col p-4 gap-1">
+            {label}
             <input
-                ref={inputRef}
                 id={name}
                 name={name}
                 type={type}
@@ -55,6 +40,6 @@ export function Field({
                     {error}
                 </span>
             )}
-        </div>
+        </Label.Root>
     )
 }
