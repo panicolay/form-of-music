@@ -17,14 +17,29 @@ export function Field({
     ...props 
 }: FieldProps) {
     return (
-        <Label.Root className="flex flex-col p-4 gap-1">
-            {label}
+        <Label.Root className="
+            group
+            flex flex-col p-4 gap-1
+            outline outline-transparent
+            focus-within:outline-zinc-300
+            transition-colors duration-200 ease-in-out
+        ">
+            <span className="
+                text-sm text-zinc-400 uppercase
+                group-focus-within:text-zinc-300
+                transition-colors duration-200 ease-in-out
+            ">
+                {label}
+            </span>
             <input
                 id={name}
                 name={name}
                 type={type}
                 className={`
+                    text-base text-zinc-200
                     outline-none
+                    focus:text-zinc-100
+                    transition-colors duration-200 ease-in-out
                     ${error ? 'border-red-500' : 'border-zinc-300'}
                     ${props.className || ''}
                 `}
