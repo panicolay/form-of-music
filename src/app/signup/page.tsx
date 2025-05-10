@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { Field } from '../components/ui';
 
 export default function SignUp() {
   const router = useRouter();
@@ -24,61 +25,48 @@ export default function SignUp() {
             Create an account
         </h2>
         
-        <form onSubmit={handleSubmit}>
-          <div>
-            <div>
-              <label htmlFor="username">
-                Username
-              </label>
-              <input
-                id="username"
-                name="username"
-                type="text"
-                required
-                value={formData.username}
-                onChange={(e) => setFormData({...formData, username: e.target.value})}
-              />
-            </div>
-            <div>
-              <label htmlFor="email">
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
-              />
-            </div>
-            <div>
-              <label htmlFor="password">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                value={formData.password}
-                onChange={(e) => setFormData({...formData, password: e.target.value})}
-              />
-            </div>
-          </div>
+        <form onSubmit={handleSubmit}
+            className="border border-zinc-500 divide-y divide-zinc-500"
+        >
+
+          <Field
+            name="username"
+            label="Username"
+            value={formData.username}
+            required
+            onChange={(e) => setFormData({...formData, username: e.target.value})}
+          />
+
+          <Field
+            name="email"
+            label="Email"
+            type="email"
+            value={formData.email}
+            required
+            onChange={(e) => setFormData({...formData, email: e.target.value})}
+          />
+
+          <Field
+            name="password"
+            label="Password"
+            type="password"
+            value={formData.password}
+            required
+            onChange={(e) => setFormData({...formData, password: e.target.value})}
+          />
 
           <div>
+            <Link href="/">
+              Cancel
+            </Link>
             <button
               type="submit"
             >
               Sign Up
             </button>
-            <Link href="/">
-              Cancel
-            </Link>
           </div>
         </form>
-    
+        
     </div>
   );
 } 
