@@ -7,6 +7,7 @@ interface FieldProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: string;
   error?: string;
+  instruction?: string;
   type?: InputType;
 }
 
@@ -14,6 +15,7 @@ export function Field({
   name,
   label = name,
   error,
+  instruction,
   type = 'text',
   ...props
 }: FieldProps) {
@@ -38,7 +40,13 @@ export function Field({
         {label}
       </span>
       <input
-        aria-describedby={error ? `${name}-error` : undefined}
+        aria-describedby={
+          error
+            ? `${name}-error`
+            : instruction
+              ? `${name}-instruction`
+              : undefined
+        }
         aria-invalid={!!error}
         className={`
                     text-base text-zinc-200
@@ -54,8 +62,20 @@ export function Field({
         {...props}
       />
       {error && (
-        <span className="text-red-500" id={`${name}-error`}>
+        <span className="text-red-500 text-sm" id={`${name}-error`}>
           {error}
+        </span>
+      )}
+      {instruction && !error && (
+        <span
+          className="
+              text-zinc-500 text-sm
+              group-focus-within:text-zinc-400
+              transition-colors duration-200 ease-in-out
+            "
+          id={`${name}-instruction`}
+        >
+          {instruction}
         </span>
       )}
     </Label.Root>

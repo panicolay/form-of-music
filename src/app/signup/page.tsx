@@ -19,38 +19,44 @@ export default function SignUp() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const validateField = (name: string, value: string) => {
-    switch (name) {
-      case 'username':
-        return value.length < 3
-          ? 'Username must be at least 3 characters long'
-          : '';
-      case 'email':
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return !emailRegex.test(value)
-          ? 'Please enter a valid email address'
-          : '';
-      case 'password':
-        return value.length < 8
-          ? 'Password must be at least 8 characters long'
-          : '';
-      default:
-        return '';
-    }
-  };
-
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    const error = validateField(name, value);
-    setErrors((prev) => ({ ...prev, [name]: error }));
-  };
-
   const validateForm = () => {
     const newErrors = {
-      username: validateField('username', formData.username),
-      email: validateField('email', formData.email),
-      password: validateField('password', formData.password),
+      username: '',
+      email: '',
+      password: '',
     };
+
+    // Username validation
+    if (formData.username.length < 2) {
+      newErrors.username = 'Username must be at least 2 characters long';
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    // Password validation
+    const hasMinLength = formData.password.length >= 8;
+    const hasUpperCase = /[A-Z]/.test(formData.password);
+    const hasLowerCase = /[a-z]/.test(formData.password);
+    const hasNumber = /[0-9]/.test(formData.password);
+    const hasSpecialChar =
+      /[!@#$%^&*(),.?":{}|<>[\]\\/;'`~\-_=+éèêëàâäôöûüùç]/.test(
+        formData.password
+      );
+
+    if (
+      !hasMinLength ||
+      !hasUpperCase ||
+      !hasLowerCase ||
+      !hasNumber ||
+      !hasSpecialChar
+    ) {
+      newErrors.password =
+        'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character';
+    }
 
     setErrors(newErrors);
     return !Object.values(newErrors).some((error) => error !== '');
@@ -105,7 +111,6 @@ export default function SignUp() {
           label="Username"
           name="username"
           value={formData.username}
-          onBlur={handleBlur}
           onChange={(e) =>
             setFormData({ ...formData, username: e.target.value })
           }
@@ -118,18 +123,17 @@ export default function SignUp() {
           name="email"
           type="email"
           value={formData.email}
-          onBlur={handleBlur}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         />
 
         <Field
           required
           error={errors.password}
+          instruction="Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character"
           label="Password"
           name="password"
           type="password"
           value={formData.password}
-          onBlur={handleBlur}
           onChange={(e) =>
             setFormData({ ...formData, password: e.target.value })
           }
