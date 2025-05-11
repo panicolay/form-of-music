@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { Button, Field } from '../components/ui';
 
 export default function SignUp() {
@@ -75,4 +74,4 @@ export default function SignUp() {
         
     </div>
   );
-} 
+}
