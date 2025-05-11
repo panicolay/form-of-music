@@ -11,7 +11,7 @@
     "lint:strict": "next lint --max-warnings=0",
     "format": "prettier --write .",
     "check": "npm run lint:fix && npm run format",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "next": "15.3.2",
