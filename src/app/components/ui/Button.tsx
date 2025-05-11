@@ -1,17 +1,17 @@
-import Link from 'next/link'
-import { ButtonHTMLAttributes, ReactNode } from 'react'
+import Link from 'next/link';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
 type ButtonProps = {
-  children: ReactNode
-  href?: string
-  className?: string
-} & ButtonHTMLAttributes<HTMLButtonElement>
+  children: ReactNode;
+  href?: string;
+  className?: string;
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export function Button({ 
-  children, 
-  href, 
+export function Button({
+  children,
+  href,
   className = '',
-  ...props 
+  ...props
 }: ButtonProps) {
   const baseStyles = `
     inline-flex items-center px-4 h-14
@@ -19,25 +19,19 @@ export function Button({
     border-zinc-200
     cursor-pointer
     transition-colors duration-200 ease-in-out
-  `
+  `;
 
   if (href) {
     return (
-      <Link 
-        href={href}
-        className={`${baseStyles} ${className}`}
-      >
+      <Link className={`${baseStyles} ${className}`} href={href}>
         {children}
       </Link>
-    )
+    );
   }
 
   return (
-    <button
-      className={`${baseStyles} ${className}`}
-      {...props}
-    >
+    <button className={`${baseStyles} ${className}`} {...props}>
       {children}
     </button>
-  )
+  );
 }

@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+
 import { Button, Field } from '../components/ui';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    password: ''
+    password: '',
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -18,60 +19,64 @@ export default function SignUp() {
 
   // TODO: Regarder ce que sont max-w-md et mx-auto et comment les utiliser (Tailwind CSS)
   return (
-    <div className="
+    <div
+      className="
         space-y-10
         max-w-md mx-auto
-    ">
-        <h2 className="
+    "
+    >
+      <h2
+        className="
             font-poppins font-medium
             text-4xl uppercase
-        ">
-            Create <br />an account
-        </h2>
-        
-        <form onSubmit={handleSubmit}
-            className="border border-zinc-200 divide-y divide-zinc-200"
-        >
+        "
+      >
+        Create <br />
+        an account
+      </h2>
 
-          <Field
-            name="username"
-            label="Username"
-            value={formData.username}
-            required
-            onChange={(e) => setFormData({...formData, username: e.target.value})}
-          />
+      <form
+        className="border border-zinc-200 divide-y divide-zinc-200"
+        onSubmit={handleSubmit}
+      >
+        <Field
+          required
+          label="Username"
+          name="username"
+          value={formData.username}
+          onChange={(e) =>
+            setFormData({ ...formData, username: e.target.value })
+          }
+        />
 
-          <Field
-            name="email"
-            label="Email"
-            type="email"
-            value={formData.email}
-            required
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
-          />
+        <Field
+          required
+          label="Email"
+          name="email"
+          type="email"
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        />
 
-          <Field
-            name="password"
-            label="Password"
-            type="password"
-            value={formData.password}
-            required
-            onChange={(e) => setFormData({...formData, password: e.target.value})}
-          />
+        <Field
+          required
+          label="Password"
+          name="password"
+          type="password"
+          value={formData.password}
+          onChange={(e) =>
+            setFormData({ ...formData, password: e.target.value })
+          }
+        />
 
-          <div className="flex">
-            <Button href="/">
-              Cancel
-            </Button>
+        <div className="flex">
+          <Button href="/">Cancel</Button>
 
-            <Button
-              type="submit" className="border-l-1 w-full"
-            >
-              Sign Up
-            </Button>
-          </div>
-        </form>
-        
+          <Button className="border-l-1 w-full" type="submit">
+            Sign Up
+          </Button>
+        </div>
+      </form>
     </div>
   );
 }

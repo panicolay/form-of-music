@@ -1,42 +1,46 @@
-import React from 'react';
 import { Label } from 'radix-ui';
+import React from 'react';
 
 type InputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'url';
 
-interface FieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
-    label?: string;
-    error?: string;
-    type?: InputType;
+interface FieldProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+  label?: string;
+  error?: string;
+  type?: InputType;
 }
 
-export function Field({ 
-    name, 
-    label = name,
-    error,
-    type = 'text',
-    ...props 
+export function Field({
+  name,
+  label = name,
+  error,
+  type = 'text',
+  ...props
 }: FieldProps) {
-    return (
-        <Label.Root className="
+  return (
+    <Label.Root
+      className="
             group
             flex flex-col p-4 gap-1
             cursor-text
             focus-within:bg-zinc-800
             transition-colors duration-200 ease-in-out
-        ">
-            <span className="
+        "
+    >
+      <span
+        className="
                 font-poppins
                 text-sm text-zinc-400 uppercase
                 group-focus-within:text-zinc-200
                 transition-colors duration-200 ease-in-out
-            ">
-                {label}
-            </span>
-            <input
-                id={name}
-                name={name}
-                type={type}
-                className={`
+            "
+      >
+        {label}
+      </span>
+      <input
+        aria-describedby={error ? `${name}-error` : undefined}
+        aria-invalid={!!error}
+        className={`
                     text-base text-zinc-200
                     outline-none
                     focus:text-zinc-50
@@ -44,18 +48,16 @@ export function Field({
                     ${error ? 'border-red-500' : 'border-zinc-300'}
                     ${props.className || ''}
                 `}
-                aria-invalid={!!error}
-                aria-describedby={error ? `${name}-error` : undefined}
-                {...props}
-            />
-            {error && (
-                <span 
-                    id={`${name}-error`}
-                    className="text-red-500"
-                >
-                    {error}
-                </span>
-            )}
-        </Label.Root>
-    )
+        id={name}
+        name={name}
+        type={type}
+        {...props}
+      />
+      {error && (
+        <span className="text-red-500" id={`${name}-error`}>
+          {error}
+        </span>
+      )}
+    </Label.Root>
+  );
 }

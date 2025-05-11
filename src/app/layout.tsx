@@ -1,36 +1,40 @@
-import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Inter, Poppins } from 'next/font/google';
+import './globals.css';
 
-const inter = Inter({ 
-  subsets: ["latin"],
+const inter = Inter({
+  subsets: ['latin'],
   variable: '--font-inter',
 });
 
 const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700'],
-  subsets: ["latin"],
+  subsets: ['latin'],
   variable: '--font-poppins',
 });
 
 export const metadata: Metadata = {
-  title: "Form of Music",
-  description: "Your music application",
+  title: 'Form of Music',
+  description: 'Your music application',
 };
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body className={`
+      <body
+        className={`
         ${inter.variable} ${poppins.variable}
-        `}>
-        <main className="
+        `}
+      >
+        <main
+          className="
           pt-20 pb-10 px-4
-        ">
+        "
+        >
           {children}
         </main>
       </body>
