@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Field } from '../components/ui';
+import { Button, Field } from '../components/ui';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -31,7 +31,7 @@ export default function SignUp() {
         </h2>
         
         <form onSubmit={handleSubmit}
-            className="border border-zinc-500 divide-y divide-zinc-500"
+            className="border border-zinc-200 divide-y divide-zinc-200"
         >
 
           <Field
@@ -60,15 +60,16 @@ export default function SignUp() {
             onChange={(e) => setFormData({...formData, password: e.target.value})}
           />
 
-          <div>
-            <Link href="/">
+          <div className="flex">
+            <Button href="/">
               Cancel
-            </Link>
-            <button
-              type="submit"
+            </Button>
+
+            <Button
+              type="submit" className="border-l-1 w-full"
             >
               Sign Up
-            </button>
+            </Button>
           </div>
         </form>
         

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Button } from './components/ui'
 
 export default function Home() {
   return (
@@ -13,9 +13,9 @@ export default function Home() {
             Form of<br />
             Music
         </h1>
-        <Link href="/signup">
+        <Button href="/signup" className="border">
             Create an account
-        </Link>
+        </Button>
     </div>
   );
 }

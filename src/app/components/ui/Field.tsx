@@ -20,14 +20,14 @@ export function Field({
         <Label.Root className="
             group
             flex flex-col p-4 gap-1
-            outline outline-transparent
-            focus-within:outline-zinc-300
+            cursor-text
+            focus-within:bg-zinc-800
             transition-colors duration-200 ease-in-out
         ">
             <span className="
                 font-poppins
                 text-sm text-zinc-400 uppercase
-                group-focus-within:text-zinc-300
+                group-focus-within:text-zinc-200
                 transition-colors duration-200 ease-in-out
             ">
                 {label}
@@ -39,7 +39,7 @@ export function Field({
                 className={`
                     text-base text-zinc-200
                     outline-none
-                    focus:text-zinc-100
+                    focus:text-zinc-50
                     transition-colors duration-200 ease-in-out
                     ${error ? 'border-red-500' : 'border-zinc-300'}
                     ${props.className || ''}
