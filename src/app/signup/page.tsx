@@ -47,6 +47,7 @@ export default function SignUp() {
           onChange={(e) =>
             setFormData({ ...formData, username: e.target.value })
           }
+          autoFocus
         />
 
         <Field
