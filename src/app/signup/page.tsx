@@ -17,7 +17,8 @@ export default function SignUp() {
     console.log('Form submitted:', formData);
   };
 
-  // TODO: Regarder ce que sont max-w-md et mx-auto et comment les utiliser (Tailwind CSS)
+  // TODO: Regarder ce que sont max-w-md et mx-auto
+  // et comment les utiliser (Tailwind CSS)
   return (
     <div
       className="
@@ -40,6 +41,7 @@ export default function SignUp() {
         onSubmit={handleSubmit}
       >
         <Field
+          autoFocus
           required
           label="Username"
           name="username"
@@ -47,7 +49,6 @@ export default function SignUp() {
           onChange={(e) =>
             setFormData({ ...formData, username: e.target.value })
           }
-          autoFocus
         />
 
         <Field

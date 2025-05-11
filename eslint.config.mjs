@@ -1,5 +1,6 @@
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+
 import { FlatCompat } from '@eslint/eslintrc';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -120,16 +121,31 @@ const eslintConfig = [
         },
       ],
       semi: ['error', 'always'],
-      // "max-len": ["error", {
-      //   "code": 80,
-      //   "ignoreUrls": true,
-      //   "ignoreStrings": true,
-      //   "ignoreTemplateLiterals": true
-      // }],
-      'comma-dangle': ['error', 'always-multiline'],
+      'max-len': [
+        'error',
+        {
+          code: 80,
+          ignoreUrls: true,
+          ignoreStrings: true,
+          ignoreTemplateLiterals: true,
+        },
+      ],
+      'comma-dangle': [
+        'error',
+        {
+          arrays: 'always-multiline',
+          objects: 'always-multiline',
+          imports: 'always-multiline',
+          exports: 'always-multiline',
+          functions: 'always-multiline',
+        },
+      ],
       'object-curly-spacing': ['error', 'always'],
       'array-bracket-spacing': ['error', 'never'],
-      'arrow-spacing': ['error', { before: true, after: true }],
+      'arrow-spacing': ['error', { 'before': true, 'after': true }],
+      'arrow-parens': ['error', 'always'],
+      'no-mixed-spaces-and-tabs': 'error',
+      'no-unneeded-ternary': 'error',
       'no-multi-spaces': 'error',
       'no-trailing-spaces': 'error',
       'eol-last': ['error', 'always'],
