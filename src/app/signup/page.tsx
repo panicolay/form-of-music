@@ -108,6 +108,7 @@ export default function SignUp() {
           autoFocus
           required
           error={errors.username}
+          inputMode="text"
           label="Username"
           name="username"
           value={formData.username}

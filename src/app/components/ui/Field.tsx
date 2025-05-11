@@ -21,13 +21,13 @@ export function Field({
 }: FieldProps) {
   return (
     <Label.Root
-      className="
+      className={`
             group
             flex flex-col p-4 gap-1
             cursor-text
             focus-within:bg-zinc-800
             transition-colors duration-200 ease-in-out
-        "
+        `}
     >
       <span
         className="
@@ -52,8 +52,7 @@ export function Field({
                     text-base text-zinc-200
                     outline-none
                     focus:text-zinc-50
-                    transition-colors duration-200 ease-in-out
-                    ${error ? 'border-red-500' : 'border-zinc-300'}
+                    transition-colors duration-200 ease-in-out d
                     ${props.className || ''}
                 `}
         id={name}
@@ -62,7 +61,7 @@ export function Field({
         {...props}
       />
       {error && (
-        <span className="text-red-500 text-sm" id={`${name}-error`}>
+        <span className="text-rose-500 text-sm" id={`${name}-error`}>
           {error}
         </span>
       )}
