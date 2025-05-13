@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
-import './globals.css';
 
+import './globals.css';
+import { TopBar } from '@/components/layout';
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -30,6 +31,7 @@ export default function RootLayout({
         ${inter.variable} ${poppins.variable}
         `}
       >
+        <TopBar />
         <main
           className="
           pt-20 pb-10 px-4

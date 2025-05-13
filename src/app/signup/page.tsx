@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Button, Field } from '../components/ui';
+import { Button, Field } from '@/components/ui';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -91,7 +91,7 @@ export default function SignUp() {
     >
       <h2
         className="
-            font-poppins font-medium
+            font-poppins font-semibold
             text-4xl uppercase
         "
       >
@@ -108,7 +108,7 @@ export default function SignUp() {
           autoFocus
           required
           error={errors.username}
-          inputMode="text"
+          inputMode="text" // n'as pas fonctionné pour ouvrir le clavier d'un smartphone
           label="Username"
           name="username"
           value={formData.username}

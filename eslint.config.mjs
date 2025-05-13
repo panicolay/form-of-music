@@ -8,6 +8,15 @@ const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
+  recommendedConfig: {
+    settings: {
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+        },
+      },
+    },
+  },
 });
 
 const eslintConfig = [
@@ -18,19 +27,19 @@ const eslintConfig = [
       // TypeScript
       // ==========================================
       '@typescript-eslint/no-unused-vars': [
-        'error',
+        'warn',
         {
           argsIgnorePattern: '^_',
           varsIgnorePattern: '^_',
           caughtErrorsIgnorePattern: '^_',
         },
       ],
-      '@typescript-eslint/explicit-function-return-type': [
-        'warn',
-        {
-          allowExpressions: true,
-        },
-      ],
+      // '@typescript-eslint/explicit-function-return-type': [
+      //   'warn',
+      //   {
+      //     allowExpressions: true,
+      //   },
+      // ],
       '@typescript-eslint/consistent-type-imports': [
         'error',
         {

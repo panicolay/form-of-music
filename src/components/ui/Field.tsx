@@ -11,7 +11,7 @@ interface FieldProps
   type?: InputType;
 }
 
-export function Field({
+export default function Field({
   name,
   label = name,
   error,
