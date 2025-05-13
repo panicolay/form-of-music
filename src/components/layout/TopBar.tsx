@@ -1,16 +1,30 @@
+import type { User } from '@supabase/supabase-js';
+
 import { Button } from '@/components/ui';
 
-export default function TopBar() {
+interface TopBarProps {
+  user: User | null;
+}
+
+export default function TopBar({ user }: TopBarProps) {
   return (
     <div
       className="
-        w-full flex justify-end
-        bg-zinc-900
+        w-full flex justify-between items-center
+        bg-zinc-950
+        border-b border-zinc-200
     "
     >
-      <form action="/logout">
-        <Button type="submit">Logout</Button>
-      </form>
+      {user ? (
+        <>
+          <span className="text-zinc-200">Bienvenue, {user.email}</span>
+          <form action="/logout">
+            <Button type="submit">Logout</Button>
+          </form>
+        </>
+      ) : (
+        <Button href="/login">Login</Button>
+      )}
     </div>
   );
 }

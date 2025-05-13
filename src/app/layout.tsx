@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 
-import './globals.css';
 import { TopBar } from '@/components/layout';
+import { createClient } from '@/utils/supabase/server';
+
+import './globals.css';
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -16,14 +19,19 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: 'Form of Music',
-  description: 'Your music application',
+  // description: '',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <html lang="en">
       <body
@@ -31,7 +39,7 @@ export default function RootLayout({
         ${inter.variable} ${poppins.variable}
         `}
       >
-        <TopBar />
+        <TopBar user={user} />
         <main
           className="
           pt-20 pb-10 px-4
