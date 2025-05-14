@@ -6,6 +6,7 @@ import { useState, useTransition } from 'react';
 import { Button, Field } from '@/components/ui';
 
 import { login } from './actions';
+import { loginSchema } from './validation';
 
 export default function LoginPage() {
   const [errors, setErrors] = useState({ email: '', password: '', global: '' });
@@ -13,12 +14,13 @@ export default function LoginPage() {
   const router = useRouter();
 
   function validate(email: string, password: string) {
+    const result = loginSchema.safeParse({ email, password });
     const newErrors = { email: '', password: '', global: '' };
-    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      newErrors.email = 'Invalid email address';
-    }
-    if (password.length < 8) {
-      newErrors.password = 'Password must be at least 8 characters long';
+
+    if (!result.success) {
+      const errors = result.error.flatten().fieldErrors;
+      newErrors.email = errors.email?.[0] || '';
+      newErrors.password = errors.password?.[0] || '';
     }
     return newErrors;
   }
@@ -37,8 +39,11 @@ export default function LoginPage() {
 
     startTransition(async () => {
       const result = await login(email, password);
-      if (result?.error) {
-        setErrors((prev) => ({ ...prev, global: result.error }));
+      if (
+        result?.errors &&
+        (result.errors.email || result.errors.password || result.errors.global)
+      ) {
+        setErrors(result.errors);
       } else {
         router.push('/');
       }
