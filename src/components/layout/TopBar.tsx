@@ -19,7 +19,7 @@ export default function TopBar({ user }: TopBarProps) {
       className="
         w-full flex justify-between items-center
         bg-zinc-950
-        border-t border-b border-zinc-200
+        border-b border-zinc-200
     "
     >
       <Button href="/">FOM</Button>
