@@ -5,10 +5,7 @@ import { redirect } from 'next/navigation';
 
 import { createClient } from '@/utils/supabase/server';
 
-export async function login(state: { error: string }, formData: FormData) {
-  const email = formData.get('email');
-  const password = formData.get('password');
-
+export async function login(email: string, password: string) {
   if (
     typeof email !== 'string' ||
     !email.includes('@') ||
@@ -29,8 +26,7 @@ export async function login(state: { error: string }, formData: FormData) {
     return { error: error.message };
   }
 
-  revalidatePath('/', 'layout');
-  redirect('/');
+  return { error: '' };
 }
 
 export async function signup(formData: FormData) {

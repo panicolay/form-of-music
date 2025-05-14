@@ -1,13 +1,49 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useState, useTransition } from 'react';
 
 import { Button, Field } from '@/components/ui';
 
 import { login } from './actions';
 
 export default function LoginPage() {
-  const [state, action, isPending] = useActionState(login, { error: '' });
+  const [errors, setErrors] = useState({ email: '', password: '', global: '' });
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+
+  function validate(email: string, password: string) {
+    const newErrors = { email: '', password: '', global: '' };
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      newErrors.email = 'Invalid email address';
+    }
+    if (password.length < 8) {
+      newErrors.password = 'Password must be at least 8 characters long';
+    }
+    return newErrors;
+  }
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setErrors({ email: '', password: '', global: '' });
+    const form = event.currentTarget;
+    const email = form.email.value;
+    const password = form.password.value;
+    const validationErrors = validate(email, password);
+    if (validationErrors.email || validationErrors.password) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    startTransition(async () => {
+      const result = await login(email, password);
+      if (result?.error) {
+        setErrors((prev) => ({ ...prev, global: result.error }));
+      } else {
+        router.push('/');
+      }
+    });
+  }
 
   return (
     <div
@@ -24,38 +60,46 @@ export default function LoginPage() {
       >
         Login
       </h2>
-      {state.error && (
+      {errors.global && (
         <div
           className="p-4
           border border-rose-500
           text-rose-500 text-sm
         "
         >
-          {state.error}
+          {errors.global}
         </div>
       )}
       <form
         noValidate
-        action={action}
         className="border border-zinc-200 divide-y divide-zinc-200"
+        onSubmit={handleSubmit}
       >
-        <Field autoFocus required label="Email" name="email" type="email" />
-        <Field required label="Password" name="password" type="password" />
+        <Field
+          autoFocus
+          required
+          error={errors.email}
+          label="Email"
+          name="email"
+          type="email"
+        />
+        <Field
+          required
+          error={errors.password}
+          label="Password"
+          name="password"
+          type="password"
+        />
 
         <div className="flex">
           <Button className="border-r-1" href="/">
             Cancel
           </Button>
-          <Button className="w-full" type="submit">
-            Log in
+          <Button className="w-full" disabled={isPending} type="submit">
+            {isPending ? 'Logging in...' : 'Log in'}
           </Button>
         </div>
       </form>
     </div>
   );
 }
-
-// TODO: comprendre la différence entre la structure
-// de la page Signup et Login.
-// Est-ce que la logique est diviésé entre la page et l'action
-// vs la page Signup ?
