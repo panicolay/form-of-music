@@ -24,8 +24,18 @@ export default function LoginPage() {
       >
         Login
       </h2>
-      {state.error && <div className="text-red-500">{state.error}</div>}
+      {state.error && (
+        <div
+          className="p-4
+          border border-rose-500
+          text-rose-500 text-sm
+        "
+        >
+          {state.error}
+        </div>
+      )}
       <form
+        noValidate
         action={action}
         className="border border-zinc-200 divide-y divide-zinc-200"
       >
