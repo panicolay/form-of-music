@@ -1,4 +1,7 @@
+'use client';
+
 import type { User } from '@supabase/supabase-js';
+import { usePathname } from 'next/navigation';
 
 import { Button } from '@/components/ui';
 
@@ -7,6 +10,11 @@ interface TopBarProps {
 }
 
 export default function TopBar({ user }: TopBarProps) {
+  const pathname = usePathname();
+
+  // Ne pas afficher sur la page login
+  if (pathname === '/login') return null;
+
   return (
     <div
       className="
@@ -15,15 +23,17 @@ export default function TopBar({ user }: TopBarProps) {
         border-b border-zinc-200
     "
     >
+      <Button href="/">FOM</Button>
       {user ? (
-        <>
-          <span className="text-zinc-200">Bienvenue, {user.email}</span>
-          <form action="/logout">
-            <Button type="submit">Logout</Button>
-          </form>
-        </>
+        <form action="/logout">
+          <Button className="border-l border-zinc-200" type="submit">
+            Logout
+          </Button>
+        </form>
       ) : (
-        <Button href="/login">Login</Button>
+        <Button className="border-l border-zinc-200" href="/login">
+          Login
+        </Button>
       )}
     </div>
   );

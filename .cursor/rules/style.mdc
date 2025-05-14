@@ -3,4 +3,4 @@ description:
 globs: *.tsx
 alwaysApply: false
 ---
-Do not add style unless I tell you to.
+Do not add styles to className unless I tell you to.

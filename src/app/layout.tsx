@@ -18,8 +18,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Form of Music',
-  // description: '',
+  title: 'The Form of Music',
+  description: 'Explore how music is built',
 };
 
 export default async function RootLayout({
@@ -42,7 +42,7 @@ export default async function RootLayout({
         <TopBar user={user} />
         <main
           className="
-          pt-20 pb-10 px-4
+          py-10 px-4
         "
         >
           {children}
