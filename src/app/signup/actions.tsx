@@ -18,7 +18,24 @@ export async function signup(email: string, password: string) {
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signUp({ email, password });
+  const { error, data } = await supabase.auth.signUp({ email, password });
+
+  // Check if the user already exists and is confirmed
+  if (
+    !error &&
+    data?.user &&
+    Array.isArray(data.user.identities) &&
+    data.user.identities.length === 0
+  ) {
+    return {
+      errors: {
+        email: '',
+        password: '',
+        global: 'This email is already registered. Please log in.',
+      },
+    };
+  }
+
   if (error) {
     return {
       errors: {
