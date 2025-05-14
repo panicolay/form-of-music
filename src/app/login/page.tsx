@@ -1,8 +1,14 @@
+'use client';
+
+import { useActionState } from 'react';
+
 import { Button, Field } from '@/components/ui';
 
-import { login, signup } from './actions';
+import { login } from './actions';
 
 export default function LoginPage() {
+  const [state, action, isPending] = useActionState(login, { error: '' });
+
   return (
     <div
       className="
@@ -18,14 +24,21 @@ export default function LoginPage() {
       >
         Login
       </h2>
-      <form className="border border-zinc-200 divide-y divide-zinc-200">
+      {state.error && <div className="text-red-500">{state.error}</div>}
+      <form
+        action={action}
+        className="border border-zinc-200 divide-y divide-zinc-200"
+      >
         <Field autoFocus required label="Email" name="email" type="email" />
         <Field required label="Password" name="password" type="password" />
 
         <div className="flex">
-          <Button href="/">Cancel</Button>
-          <Button formAction={login}>Log in</Button>
-          <Button formAction={signup}>Sign up</Button>
+          <Button className="border-r-1" href="/">
+            Cancel
+          </Button>
+          <Button className="w-full" type="submit">
+            Log in
+          </Button>
         </div>
       </form>
     </div>
