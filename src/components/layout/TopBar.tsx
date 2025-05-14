@@ -12,8 +12,7 @@ interface TopBarProps {
 export default function TopBar({ user }: TopBarProps) {
   const pathname = usePathname();
 
-  // Ne pas afficher sur la page login
-  if (pathname === '/login') return null;
+  if (pathname === '/login' || pathname === '/signup') return null;
 
   return (
     <div

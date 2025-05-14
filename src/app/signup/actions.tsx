@@ -2,10 +2,10 @@
 
 import { createClient } from '@/utils/supabase/server';
 
-import { loginSchema } from './validation';
+import { signupSchema } from './validation';
 
-export async function login(email: string, password: string) {
-  const result = loginSchema.safeParse({ email, password });
+export async function signup(email: string, password: string) {
+  const result = signupSchema.safeParse({ email, password });
   if (!result.success) {
     const errors = result.error.flatten().fieldErrors;
     return {
@@ -18,14 +18,13 @@ export async function login(email: string, password: string) {
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-
+  const { error } = await supabase.auth.signUp({ email, password });
   if (error) {
     return {
       errors: {
         email: '',
         password: '',
-        global: 'Email or password incorrect',
+        global: error.message,
       },
     };
   }
