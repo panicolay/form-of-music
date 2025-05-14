@@ -21,7 +21,7 @@ export default function Button({
     hover:bg-zinc-800 hover:text-zinc-50
     focus:outline-none focus-visible:underline
     focus:bg-zinc-800 focus:text-zinc-50
-    active:bg-zinc-950 active:text-zinc-50
+    active:bg-zinc-900 active:text-zinc-50
     transition-colors duration-120 ease-in-out
   `;
 
