@@ -109,7 +109,10 @@ export default function LoginPage() {
 
       <div>
         <p>
-          Don&apos;t have an account? <Link href="/signup">Sign up</Link>
+          Don&apos;t have an account yet?{' '}
+          <Link className="underline" href="/signup">
+            Sign up here
+          </Link>
         </p>
       </div>
     </div>

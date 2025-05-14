@@ -113,7 +113,10 @@ export default function SignUp() {
 
       <div>
         <p>
-          Already have an account? <Link href="/login">Login</Link>
+          Already have an account?{' '}
+          <Link className="underline" href="/login">
+            Login here
+          </Link>
         </p>
       </div>
     </div>
