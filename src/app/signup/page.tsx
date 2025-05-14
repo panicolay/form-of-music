@@ -1,84 +1,54 @@
 'use client';
 
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useState, useTransition } from 'react';
 
 import { Button, Field } from '@/components/ui';
 
+import { signup } from './actions';
+import { signupSchema } from './validation';
+
 export default function SignUp() {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
+  const [errors, setErrors] = useState({ email: '', password: '', global: '' });
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
-  const [errors, setErrors] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
+  function validate(email: string, password: string) {
+    const result = signupSchema.safeParse({ email, password });
+    const newErrors = { email: '', password: '', global: '' };
 
-  const [isLoading, setIsLoading] = useState(false);
-
-  const validateForm = () => {
-    const newErrors = {
-      username: '',
-      email: '',
-      password: '',
-    };
-
-    // Username validation
-    if (formData.username.length < 2) {
-      newErrors.username = 'Username must be at least 2 characters long';
+    if (!result.success) {
+      const errors = result.error.flatten().fieldErrors;
+      newErrors.email = errors.email?.[0] || '';
+      newErrors.password = errors.password?.[0] || '';
     }
+    return newErrors;
+  }
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
-    }
-
-    // Password validation
-    const hasMinLength = formData.password.length >= 8;
-    const hasUpperCase = /[A-Z]/.test(formData.password);
-    const hasLowerCase = /[a-z]/.test(formData.password);
-    const hasNumber = /[0-9]/.test(formData.password);
-    const hasSpecialChar =
-      /[!@#$%^&*(),.?":{}|<>[\]\\/;'`~\-_=+éèêëàâäôöûüùç]/.test(
-        formData.password
-      );
-
-    if (
-      !hasMinLength ||
-      !hasUpperCase ||
-      !hasLowerCase ||
-      !hasNumber ||
-      !hasSpecialChar
-    ) {
-      newErrors.password =
-        'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character';
-    }
-
-    setErrors(newErrors);
-    return !Object.values(newErrors).some((error) => error !== '');
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!validateForm()) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setErrors({ email: '', password: '', global: '' });
+    const form = event.currentTarget;
+    const email = form.email.value;
+    const password = form.password.value;
+    const validationErrors = validate(email, password);
+    if (validationErrors.email || validationErrors.password) {
+      setErrors(validationErrors);
       return;
     }
 
-    setIsLoading(true);
-    try {
-      // TODO: Ajouter la logique d'inscription ici
-      console.log('Form submitted:', formData);
-    } catch (error) {
-      console.error('Error during signup:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    startTransition(async () => {
+      const result = await signup(email, password);
+      if (
+        result?.errors &&
+        (result.errors.email || result.errors.password || result.errors.global)
+      ) {
+        setErrors(result.errors);
+      } else {
+        router.push('/');
+      }
+    });
+  }
 
   // TODO: Regarder ce que sont max-w-md et mx-auto
   // et comment les utiliser (Tailwind CSS)
@@ -98,7 +68,16 @@ export default function SignUp() {
         Create <br />
         an account
       </h2>
-
+      {errors.global && (
+        <div
+          className="p-4
+          border border-rose-500
+          text-rose-500 text-sm
+        "
+        >
+          {errors.global}
+        </div>
+      )}
       <form
         noValidate
         className="border border-zinc-200 divide-y divide-zinc-200"
@@ -107,26 +86,11 @@ export default function SignUp() {
         <Field
           autoFocus
           required
-          error={errors.username}
-          inputMode="text" // n'as pas fonctionné pour ouvrir le clavier d'un smartphone
-          label="Username"
-          name="username"
-          value={formData.username}
-          onChange={(e) =>
-            setFormData({ ...formData, username: e.target.value })
-          }
-        />
-
-        <Field
-          required
           error={errors.email}
           label="Email"
           name="email"
           type="email"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         />
-
         <Field
           required
           error={errors.password}
@@ -134,23 +98,14 @@ export default function SignUp() {
           label="Password"
           name="password"
           type="password"
-          value={formData.password}
-          onChange={(e) =>
-            setFormData({ ...formData, password: e.target.value })
-          }
         />
 
         <div className="flex">
-          <Button disabled={isLoading} href="/">
+          <Button className="border-r-1" href="/">
             Cancel
           </Button>
-
-          <Button
-            className="border-l-1 w-full"
-            disabled={isLoading}
-            type="submit"
-          >
-            {isLoading ? 'Signing up...' : 'Sign Up'}
+          <Button className="w-full" disabled={isPending} type="submit">
+            {isPending ? 'Signing up...' : 'Sign Up'}
           </Button>
         </div>
       </form>

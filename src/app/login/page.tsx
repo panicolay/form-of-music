@@ -59,8 +59,8 @@ export default function LoginPage() {
     >
       <h2
         className="
-        font-poppins uppercase
-        text-4xl font-semibold
+        font-poppins font-semibold
+        text-4xl uppercase
         "
       >
         Login
