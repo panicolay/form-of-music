@@ -15,10 +15,14 @@ export default function Button({
 }: ButtonProps) {
   const baseStyles = `
     inline-flex items-center px-4 h-14
-    font-poppins text-zinc-200 text-sm uppercase
+    font-poppins text-sm uppercase text-zinc-200
     border-zinc-200
     cursor-pointer
-    transition-colors duration-200 ease-in-out
+    hover:bg-zinc-800 hover:text-zinc-50
+    focus:outline-none focus-visible:underline
+    focus:bg-zinc-800 focus:text-zinc-50
+    active:bg-zinc-950 active:text-zinc-50
+    transition-colors duration-120 ease-in-out
   `;
 
   if (href) {

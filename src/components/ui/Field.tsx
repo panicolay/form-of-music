@@ -26,7 +26,7 @@ export default function Field({
             flex flex-col p-4 gap-1
             cursor-text
             focus-within:bg-zinc-800
-            transition-colors duration-200 ease-in-out
+            transition-colors duration-120 ease-in-out
         `}
     >
       <span
@@ -34,7 +34,7 @@ export default function Field({
                 font-poppins
                 text-sm text-zinc-400 uppercase
                 group-focus-within:text-zinc-200
-                transition-colors duration-200 ease-in-out
+                transition-colors duration-120 ease-in-out
             "
       >
         {label}
@@ -52,7 +52,7 @@ export default function Field({
                     text-base text-zinc-200
                     outline-none
                     focus:text-zinc-50
-                    transition-colors duration-200 ease-in-out d
+                    transition-colors duration-120 ease-in-out d
                     ${props.className || ''}
                 `}
         id={name}
@@ -70,7 +70,7 @@ export default function Field({
           className="
               text-zinc-500 text-sm
               group-focus-within:text-zinc-400
-              transition-colors duration-200 ease-in-out
+              transition-colors duration-120 ease-in-out
             "
           id={`${name}-instruction`}
         >
