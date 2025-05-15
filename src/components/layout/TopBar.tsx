@@ -15,8 +15,6 @@ interface TopBarProps {
 export default function TopBar({ user }: TopBarProps) {
   const pathname = usePathname();
 
-  if (pathname === '/login' || pathname === '/signup') return null;
-
   return (
     <div
       className="
@@ -25,7 +23,7 @@ export default function TopBar({ user }: TopBarProps) {
         border-b border-zinc-200
     "
     >
-      <Link className="ml-4" href="/">
+      <Link className="m-4" href="/">
         <Fom className="w-12 h-6" />
       </Link>
       {user ? (

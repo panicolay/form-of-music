@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, useTransition } from 'react';
 
+import Fom from '@/components/svg/Fom';
 import { Button, Field } from '@/components/ui';
 
 import { login } from './actions';

@@ -2,9 +2,10 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState, useTransition } from 'react';
+import { useState, useTransition, useEffect } from 'react';
 
 import { Button, Field } from '@/components/ui';
+import { createClient } from '@/utils/supabase/client';
 
 import { signup } from './actions';
 import { signupSchema } from './validation';
@@ -13,6 +14,24 @@ export default function SignUp() {
   const [errors, setErrors] = useState({ email: '', password: '', global: '' });
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
+  const [checking, setChecking] = useState(true);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const supabase = createClient();
+      const { data } = await supabase.auth.getUser();
+      if (data.user) {
+        router.replace('/');
+      } else {
+        setChecking(false);
+      }
+    };
+    checkUser();
+  }, [router]);
+
+  if (checking) {
+    return null; // TODO: we could add a loader here
+  }
 
   function validate(email: string, password: string) {
     const result = signupSchema.safeParse({ email, password });
