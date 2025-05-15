@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Confirm your signup</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@400;700&display=swap');
+      body,
+      .email-container {
+        background: #09090b;
+        color: #e4e4e7;
+        font-family: 'Inter', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .email-container {
+        padding: 40px;
+      }
+      h1 {
+        font-family: 'Poppins', Arial, sans-serif;
+        font-weight: bold;
+        color: #e4e4e7;
+        text-transform: uppercase;
+        margin-bottom: 40px;
+        margin-top: 0;
+        font-size: 2.5rem;
+        line-height: 1;
+      }
+      p {
+        margin-bottom: 40px;
+        line-height: 1.6;
+        font-size: 1rem;
+      }
+      .button {
+        display: inline-block;
+        padding: 0.75rem 1rem;
+        border: 1px solid #e4e4e7;
+        border-radius: 0;
+        background: #09090b;
+        color: #e4e4e7 !important;
+        font-family: 'Poppins', Arial, sans-serif;
+        font-size: 0.875rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-decoration: none;
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="email-container"
+      style="
+        background: #09090b;
+        color: #e4e4e7;
+        font-family: 'Inter', Arial, sans-serif;
+        padding: 40px;
+      "
+    >
+      <h1
+        style="
+          font-family: 'Poppins', Arial, sans-serif;
+          font-weight: bold;
+          margin-bottom: 40px;
+          margin-top: 0;
+          font-size: 2.5rem;
+          line-height: 1;
+        "
+      >
+        The<br />Form of<br />Music
+      </h1>
+      <p style="margin-bottom: 40px; line-height: 1.6; font-size: 1rem">
+        Thank you for signing up!<br />
+        Please confirm your email address to activate your account.
+      </p>
+      <p style="margin-bottom: 0">
+        <a
+          href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email"
+          class="button"
+          style="
+            display: inline-block;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e4e4e7;
+            border-radius: 0;
+            background: #09090b;
+            color: #e4e4e7 !important;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-size: 0.875rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            text-decoration: none;
+            margin-bottom: 0;
+          "
+        >
+          Confirm email
+        </a>
+      </p>
+    </div>
+  </body>
+</html>
