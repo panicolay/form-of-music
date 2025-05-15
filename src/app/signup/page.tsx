@@ -65,7 +65,7 @@ export default function SignUp() {
       ) {
         setErrors(result.errors);
       } else {
-        router.push('/');
+        router.push('/signup/verify');
       }
     });
   }
