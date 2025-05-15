@@ -1,9 +1,12 @@
 'use client';
 
 import type { User } from '@supabase/supabase-js';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { Button } from '@/components/ui';
+
+import Fom from '../svg/Fom';
 
 interface TopBarProps {
   user: User | null;
@@ -22,7 +25,9 @@ export default function TopBar({ user }: TopBarProps) {
         border-b border-zinc-200
     "
     >
-      <Button href="/">FOM</Button>
+      <Link className="ml-4" href="/">
+        <Fom className="w-12 h-6" />
+      </Link>
       {user ? (
         <form action="/logout">
           <Button className="border-l border-zinc-200" type="submit">
