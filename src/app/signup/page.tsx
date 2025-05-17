@@ -116,11 +116,11 @@ export default function SignUp() {
           error={errors.password}
           instruction="
             <p>Password must contain at least:</p>
-            <ul>
-              <li>- 8 characters</li>
-              <li>- One uppercase</li>
-              <li>- One lowercase</li>
-              <li>- One number</li>
+            <ul class='list-disc pl-6'>
+              <li>8 characters</li>
+              <li>1 uppercase</li>
+              <li>1 lowercase</li>
+              <li>1 number</li>
             </ul>
           "
           label="Password"

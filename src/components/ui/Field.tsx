@@ -61,9 +61,11 @@ export default function Field({
         {...props}
       />
       {error && (
-        <span className="text-rose-500 text-sm" id={`${name}-error`}>
-          {error}
-        </span>
+        <div
+          className="text-rose-500 text-sm"
+          dangerouslySetInnerHTML={{ __html: error }}
+          id={`${name}-error`}
+        />
       )}
       {instruction && !error && (
         <div
