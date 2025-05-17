@@ -114,7 +114,15 @@ export default function SignUp() {
         <Field
           required
           error={errors.password}
-          instruction="Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character"
+          instruction="
+            <p>Password must contain at least:</p>
+            <ul>
+              <li>- 8 characters</li>
+              <li>- One uppercase</li>
+              <li>- One lowercase</li>
+              <li>- One number</li>
+            </ul>
+          "
           label="Password"
           name="password"
           type="password"

@@ -66,16 +66,15 @@ export default function Field({
         </span>
       )}
       {instruction && !error && (
-        <span
+        <div
           className="
-              text-zinc-500 text-sm
-              group-focus-within:text-zinc-400
-              transition-colors duration-120 ease-in-out
-            "
+        text-zinc-500 text-sm
+        group-focus-within:text-zinc-400
+        transition-colors duration-120 ease-in-out
+        "
+          dangerouslySetInnerHTML={{ __html: instruction }}
           id={`${name}-instruction`}
-        >
-          {instruction}
-        </span>
+        />
       )}
     </Label.Root>
   );
