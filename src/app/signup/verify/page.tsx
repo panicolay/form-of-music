@@ -1,15 +1,16 @@
+import { Envelope } from '@/components/svg';
+
 export default function SignupVerify() {
   return (
-    <div className="space-y-6 max-w-md mx-auto text-center">
-      <h2 className="font-poppins font-semibold text-3xl">Almost done!</h2>
-      <p>
-        Thank you for signing up.
+    <div className="space-y-6 mx-auto text-center">
+      <Envelope className="w-24 h-24 mx-auto" />
+      <h2 className="font-poppins font-semibold text-2xl uppercase">
+        A message has been sent
+      </h2>
+      <p className="text-zinc-00">
+        To continue, confirm your email address.
         <br />
-        A confirmation email has been sent to you.
-        <br />
-        Please check your email to activate your account.
-        <br />
-        If you don&apos;t see the email, please check your spam folder.
+        (check your inbox... maybe even the shadows of your spam folder)
       </p>
     </div>
   );
