@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, useTransition, useEffect } from 'react';
+import Turnstile from 'react-turnstile';
 
 import { Button, Field } from '@/components/ui';
 import { createClient } from '@/utils/supabase/client';
@@ -10,11 +11,14 @@ import { createClient } from '@/utils/supabase/client';
 import { signup } from './actions';
 import { signupSchema } from './validation';
 
+const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!;
+
 export default function SignUp() {
   const [errors, setErrors] = useState({ email: '', password: '', global: '' });
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const [checking, setChecking] = useState(true);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   useEffect(() => {
     const checkUser = async () => {
@@ -48,6 +52,16 @@ export default function SignUp() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setErrors({ email: '', password: '', global: '' });
+
+    if (!turnstileToken) {
+      setErrors({
+        email: '',
+        password: '',
+        global: 'Please verify the captcha.',
+      });
+      return;
+    }
+
     const form = event.currentTarget;
     const email = form.email.value;
     const password = form.password.value;
@@ -126,6 +140,12 @@ export default function SignUp() {
           label="Password"
           name="password"
           type="password"
+        />
+
+        <Turnstile
+          refreshExpired="auto"
+          sitekey={siteKey}
+          onVerify={setTurnstileToken}
         />
 
         <div className="flex">
