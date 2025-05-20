@@ -143,6 +143,7 @@ export default function SignUp() {
         />
 
         <Turnstile
+          className="border-none"
           refreshExpired="auto"
           sitekey={siteKey}
           onVerify={setTurnstileToken}
