@@ -57,7 +57,7 @@ export default function SignUp() {
       setErrors({
         email: '',
         password: '',
-        global: 'Please verify the captcha.',
+        global: 'What is your true nature? Please try again.',
       });
       return;
     }
@@ -72,7 +72,7 @@ export default function SignUp() {
     }
 
     startTransition(async () => {
-      const result = await signup(email, password);
+      const result = await signup(email, password, turnstileToken);
       if (
         result?.errors &&
         (result.errors.email || result.errors.password || result.errors.global)

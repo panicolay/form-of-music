@@ -4,7 +4,7 @@ import { createClient } from '@/utils/supabase/server';
 
 import { signupSchema } from './validation';
 
-export async function signup(email: string, password: string) {
+export async function signup(email: string, password: string, token: string) {
   const result = signupSchema.safeParse({ email, password });
   if (!result.success) {
     const errors = result.error.flatten().fieldErrors;
@@ -13,6 +13,28 @@ export async function signup(email: string, password: string) {
         email: errors.email?.[0] || '',
         password: errors.password?.[0] || '',
         global: '',
+      },
+    };
+  }
+
+  // Captcha verification
+  const secretKey = process.env.TURNSTILE_SECRET_KEY!;
+  const verifyRes = await fetch(
+    'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `secret=${secretKey}&response=${token}`,
+    }
+  );
+  const verifyData = await verifyRes.json();
+
+  if (!verifyData.success) {
+    return {
+      errors: {
+        email: '',
+        password: '',
+        global: 'Your form was received, but not understood. Please try again.',
       },
     };
   }
@@ -31,7 +53,7 @@ export async function signup(email: string, password: string) {
       errors: {
         email: '',
         password: '',
-        global: 'This email is already registered. Please log in.',
+        global: 'You are not unknown. Try logging in.',
       },
     };
   }
