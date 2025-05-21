@@ -7,10 +7,14 @@ export default function SignupVerify() {
       <h2 className="font-poppins font-semibold text-2xl uppercase">
         A message has been sent
       </h2>
-      <p className="text-zinc-00">
-        To continue, confirm your email address.
+      <p>
+        Check your inbox
         <br />
-        (check your inbox... maybe even the shadows of your spam folder)
+        <span className="italic text-zinc-400">
+          — maybe even the shadows of your spam folder —
+        </span>
+        <br />
+        to complete your signup.
       </p>
     </div>
   );
