@@ -6,8 +6,7 @@ export default function Welcome() {
   return (
     <div
       className="
-        flex-1 flex flex-col items-center justify-center
-        mb-14 space-y-6
+        space-y-6
         text-center
       "
     >

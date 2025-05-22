@@ -16,15 +16,12 @@ export default function AuthLayout({
       </header>
       <main
         className="
-          flex-1 flex flex-col
-          items-center
           mx-4 my-10
         "
       >
         <div
           className="
-            flex-1 flex flex-col
-            max-w-sm w-full
+            max-w-sm mx-auto
             space-y-10
           "
         >
