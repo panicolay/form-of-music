@@ -2,12 +2,20 @@ import { Envelope } from '@/components/svg';
 
 export default function SignupVerify() {
   return (
-    <div className="space-y-6 mx-auto text-center">
+    <div
+      className="
+        flex-1 flex flex-col
+        items-center justify-center
+        mb-14
+        space-y-6
+        text-center
+      "
+    >
       <Envelope className="w-24 h-24 mx-auto" />
-      <h2 className="font-poppins font-semibold text-2xl uppercase">
+      <h2 className="font-poppins font-medium text-2xl uppercase">
         A message has been sent
       </h2>
-      <p>
+      <p className="text-sm">
         Check your inbox
         <br />
         <span className="italic text-zinc-400">

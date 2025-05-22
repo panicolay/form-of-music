@@ -36,13 +36,15 @@ export default async function RootLayout({
     <html lang="en">
       <body
         className={`
-        ${inter.variable} ${poppins.variable}
+          min-h-screen flex flex-col
+          ${inter.variable} ${poppins.variable}
         `}
       >
         <TopBar user={user} />
         <main
           className="
-          py-10 px-4
+          flex-1 flex flex-col
+          my-10 mx-4
         "
         >
           {children}

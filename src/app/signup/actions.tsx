@@ -53,7 +53,7 @@ export async function signup(email: string, password: string, token: string) {
       errors: {
         email: '',
         password: '',
-        global: 'You are not unknown. Try logging in.',
+        global: "You're not unknown. Try logging in.",
       },
     };
   }
