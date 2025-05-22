@@ -1,19 +1,14 @@
 'use client';
 
-import type { User } from '@supabase/supabase-js';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 import { Button } from '@/components/ui';
+import { useUser } from '@/context/UserContext';
 
 import Fom from '../svg/Fom';
 
-interface TopBarProps {
-  user: User | null;
-}
-
-export default function TopBar({ user }: TopBarProps) {
-  const pathname = usePathname();
+export default function TopBar() {
+  const user = useUser();
 
   return (
     <div

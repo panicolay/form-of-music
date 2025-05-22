@@ -11,7 +11,7 @@ export default function SignupVerify() {
         text-center
       "
     >
-      <Envelope className="w-24 h-24 mx-auto" />
+      <Envelope className="w-24 h-24" />
       <h2 className="font-poppins font-medium text-2xl uppercase">
         A message has been sent
       </h2>

@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 
-import { TopBar } from '@/components/layout';
-import { createClient } from '@/utils/supabase/server';
-
+import UserProvider from '@/context/UserProvider';
 import './globals.css';
+import { createClient } from '@/utils/supabase/server';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -40,15 +39,7 @@ export default async function RootLayout({
           ${inter.variable} ${poppins.variable}
         `}
       >
-        <TopBar user={user} />
-        <main
-          className="
-          flex-1 flex flex-col
-          my-10 mx-4
-        "
-        >
-          {children}
-        </main>
+        <UserProvider user={user}>{children}</UserProvider>
       </body>
     </html>
   );
