@@ -87,12 +87,7 @@ export default function SignUp() {
   // TODO: Regarder ce que sont max-w-md et mx-auto
   // et comment les utiliser (Tailwind CSS)
   return (
-    <div
-      className="
-        space-y-10
-        max-w-md mx-auto
-    "
-    >
+    <>
       <h2
         className="
             font-poppins font-semibold
@@ -167,6 +162,6 @@ export default function SignUp() {
           </Link>
         </p>
       </div>
-    </div>
+    </>
   );
 }

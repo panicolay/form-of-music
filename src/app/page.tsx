@@ -7,8 +7,8 @@ export default function Home() {
       <TopBar />
       <main
         className="
-        space-y-10
-    "
+          mx-4 my-10 space-y-10
+        "
       >
         <h1
           className="

@@ -1,17 +1,15 @@
-import { Envelope } from '@/components/svg';
+import Image from 'next/image';
 
 export default function SignupVerify() {
   return (
-    <div
-      className="
-        flex-1 flex flex-col
-        items-center justify-center
-        mb-14
-        space-y-6
-        text-center
-      "
-    >
-      <Envelope className="w-24 h-24" />
+    <div className="text-center space-y-6">
+      <Image
+        alt="Envelope"
+        className="mx-auto"
+        height={120}
+        src="/ilu-envelope.png"
+        width={120}
+      />
       <h2 className="font-poppins font-medium text-2xl uppercase">
         A message has been sent
       </h2>

@@ -53,12 +53,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div
-      className="
-      space-y-10
-      max-w-md mx-auto
-    "
-    >
+    <>
       <h2
         className="
         font-poppins font-semibold
@@ -116,6 +111,6 @@ export default function LoginPage() {
           </Link>
         </p>
       </div>
-    </div>
+    </>
   );
 }
