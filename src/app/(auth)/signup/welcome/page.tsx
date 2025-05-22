@@ -8,6 +8,7 @@ export default function Welcome() {
       className="
         flex-1 flex flex-col items-center justify-center
         mb-14 space-y-6
+        text-center
       "
     >
       <Image

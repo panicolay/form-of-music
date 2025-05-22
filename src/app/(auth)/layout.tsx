@@ -16,12 +16,20 @@ export default function AuthLayout({
       </header>
       <main
         className="
-        flex-1 flex flex-col
-        my-10 space-y-10 mx-auto
-        max-w-md w-full
-      "
+          flex-1 flex flex-col
+          items-center
+          mx-4 my-10
+        "
       >
-        {children}
+        <div
+          className="
+            flex-1 flex flex-col
+            max-w-sm w-full
+            space-y-10
+          "
+        >
+          {children}
+        </div>
       </main>
     </>
   );
