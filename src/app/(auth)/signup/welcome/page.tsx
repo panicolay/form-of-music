@@ -4,7 +4,12 @@ import Button from '@/components/ui/Button';
 
 export default function Welcome() {
   return (
-    <div className="text-center space-y-6">
+    <div
+      className="
+        flex-1 flex flex-col items-center justify-center
+        mb-14 space-y-6
+      "
+    >
       <Image
         alt="Door"
         className="mx-auto"
