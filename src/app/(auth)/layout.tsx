@@ -21,7 +21,7 @@ export default function AuthLayout({
       >
         <div
           className="
-            max-w-sm mx-auto
+            max-w-md mx-auto
             space-y-10
           "
         >

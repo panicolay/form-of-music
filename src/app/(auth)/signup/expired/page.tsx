@@ -1,6 +1,8 @@
 import Image from 'next/image';
 
-export default function SignupVerify() {
+import Button from '@/components/ui/Button';
+
+export default function Expired() {
   return (
     <div
       className="
@@ -9,24 +11,25 @@ export default function SignupVerify() {
       "
     >
       <Image
-        alt="Envelope"
+        alt="Door"
         className="mx-auto"
         height={160}
-        src="/ilu-envelope.png"
+        src="/ilu-door-closed.png"
         width={160}
       />
       <h2 className="font-poppins font-medium text-2xl uppercase">
-        A message has been sent
+        Once was a door here
       </h2>
       <p className="text-sm">
-        Check your inbox
+        Another may open
         <br />
-        <span className="italic text-zinc-400">
-          — maybe even the shadows of your spam folder —
-        </span>
+        <span className="italic text-zinc-400">— and linger —</span>
         <br />
-        to complete your signup.
+        for 10 minutes
       </p>
+      <Button className="border" href="/signup">
+        Create an account
+      </Button>
     </div>
   );
 }
