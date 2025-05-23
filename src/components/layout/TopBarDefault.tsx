@@ -7,19 +7,19 @@ import { useUser } from '@/context/UserContext';
 
 import Fom from '../svg/Fom';
 
-export default function TopBar() {
+export default function TopBarDefault() {
   const user = useUser();
 
   return (
-    <div
+    <header
       className="
         w-full flex justify-between items-center
         bg-zinc-950
         border-b border-zinc-200
     "
     >
-      <Link className="m-4" href="/">
-        <Fom className="w-12 h-6" />
+      <Link href="/">
+        <Fom className="m-4 w-12 h-6" />
       </Link>
       {user ? (
         <form action="/logout">
@@ -32,6 +32,6 @@ export default function TopBar() {
           Login
         </Button>
       )}
-    </div>
+    </header>
   );
 }

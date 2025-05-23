@@ -1,10 +1,10 @@
-import { TopBar } from '@/components/layout';
+import { TopBarDefault } from '@/components/layout';
 import { Button } from '@/components/ui';
 
 export default function Home() {
   return (
     <>
-      <TopBar />
+      <TopBarDefault />
       <main
         className="
           mx-4 my-10 space-y-10
