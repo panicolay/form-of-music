@@ -20,16 +20,16 @@ export default function Expired() {
             A door closed, eventually
           </h2>
           <p className="text-sm">
-            Another may open
+            You may open another
             <br />
             <span className="italic text-zinc-400">
-              — and linger for 1 hour —
+              — it will linger for 1 hour —
             </span>
             <br />
             when the time feels right
           </p>
           <Button className="border" href="/signup">
-            Sign up, one more time
+            Sign up, once more
           </Button>
         </div>
       </main>
