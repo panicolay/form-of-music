@@ -23,10 +23,10 @@ export default function Expired() {
             You may open another
             <br />
             <span className="italic text-zinc-400">
-              — it will linger for 1 hour —
+              — when the time feels right —
             </span>
             <br />
-            when the time feels right
+            it will linger for 1 hour
           </p>
           <Button className="border" href="/signup">
             Sign up, once more
