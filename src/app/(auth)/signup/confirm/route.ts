@@ -2,6 +2,7 @@ import { type EmailOtpType } from '@supabase/supabase-js';
 import { redirect } from 'next/navigation';
 import { type NextRequest } from 'next/server';
 
+import { generateUsername } from '@/utils/generateUsername';
 import { createClient } from '@/utils/supabase/server';
 
 export async function GET(request: NextRequest) {
@@ -18,7 +19,46 @@ export async function GET(request: NextRequest) {
       token_hash,
     });
     if (!error) {
-      // redirect user to specified redirect URL or root of app
+      // Récupère l'utilisateur courant
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
+        // Génère un username unique
+        let username;
+        let isUnique = false;
+        const maxAttempts = 10; // Pour éviter une boucle infinie
+        let attempts = 0;
+        while (!isUnique && attempts < maxAttempts) {
+          username = generateUsername();
+          // Vérifie si le username existe déjà dans la table 'profiles'
+          const { data: existing, error: checkError } = await supabase
+            .from('profiles')
+            .select('id')
+            .eq('username', username)
+            .maybeSingle();
+          if (!existing && !checkError) {
+            isUnique = true;
+          }
+          attempts++;
+        }
+        if (isUnique && username) {
+          // Vérifie si un profil existe déjà pour cet utilisateur
+          const { data: existingProfile, error: profileError } = await supabase
+            .from('profiles')
+            .select('id')
+            .eq('id', user.id)
+            .maybeSingle();
+          if (!existingProfile && !profileError) {
+            // Crée le profil à la validation de l'email
+            await supabase.from('profiles').insert({
+              id: user.id,
+              username,
+              // Ajoute ici d'autres champs obligatoires si besoin
+            });
+          }
+        }
+      }
       redirect(next);
     }
   }
@@ -26,3 +66,6 @@ export async function GET(request: NextRequest) {
   // redirect the user to an error page with some instructions
   redirect('/signup/expired');
 }
+
+// TODO: change redirection when account is created but profile is not.
+// no diffrences for the moment
