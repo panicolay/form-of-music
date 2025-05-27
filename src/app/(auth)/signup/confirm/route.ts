@@ -45,11 +45,16 @@ export async function GET(request: NextRequest) {
           .eq('id', userId)
           .maybeSingle();
         if (!existingProfile && !profileError) {
-          await supabase.from('profiles').insert({
-            id: userId,
-            username,
-            // autres champs si besoin
-          });
+          const { error: insertError } = await supabase
+            .from('profiles')
+            .insert({
+              id: userId,
+              username,
+              // autres champs si besoin
+            });
+          if (insertError) {
+            console.error("Erreur lors de l'insertion du profil:", insertError);
+          }
         }
       }
       redirect(next);
