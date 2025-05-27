@@ -19,9 +19,7 @@ export async function GET(request: NextRequest) {
       token_hash,
     });
     if (!error && verifyData?.user) {
-      // Utilise l'id utilisateur retourné par verifyOtp
       const userId = verifyData.user.id;
-      // Génère un username unique
       let username;
       let isUnique = false;
       const maxAttempts = 10;
@@ -45,16 +43,10 @@ export async function GET(request: NextRequest) {
           .eq('id', userId)
           .maybeSingle();
         if (!existingProfile && !profileError) {
-          const { error: insertError } = await supabase
-            .from('profiles')
-            .insert({
-              id: userId,
-              username,
-              // autres champs si besoin
-            });
-          if (insertError) {
-            console.error("Erreur lors de l'insertion du profil:", insertError);
-          }
+          await supabase.from('profiles').insert({
+            id: userId,
+            username,
+          });
         }
       }
       redirect(next);
