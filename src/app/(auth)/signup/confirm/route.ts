@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { type NextRequest } from 'next/server';
 
 import { generateUsername } from '@/utils/generateUsername';
+import { getRandomDefaultAvatar } from '@/utils/getRandomDefaultAvatar';
 import { createClient } from '@/utils/supabase/server';
 
 export async function GET(request: NextRequest) {
@@ -37,6 +38,8 @@ export async function GET(request: NextRequest) {
         attempts++;
       }
       if (isUnique && username) {
+        const avatar_url = getRandomDefaultAvatar();
+
         const { data: existingProfile, error: profileError } = await supabase
           .from('profiles')
           .select('id')
@@ -46,6 +49,7 @@ export async function GET(request: NextRequest) {
           await supabase.from('profiles').insert({
             id: userId,
             username,
+            avatar_url,
           });
         }
       }
