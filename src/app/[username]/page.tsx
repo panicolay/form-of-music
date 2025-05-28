@@ -6,15 +6,17 @@ import { createClient } from '@/utils/supabase/server';
 
 import { getProfileByUsername } from './actions';
 
-const DEFAULT_AVATAR = '/avatars/defaults/avatar1.png';
+const DEFAULT_AVATAR = '/avatars/defaults/avatar-o.png';
 
-export default async function ProfilePage(props: {
+export default async function ProfilePage({
+  params,
+}: {
   params: { username: string };
 }) {
-  const { username } = await props.params;
+  const { username } = params;
   const { profile } = await getProfileByUsername(username);
 
-  if (!profile) return <div>Profil non trouvé.</div>;
+  if (!profile) return <div>Profile not found.</div>; // TODO: add a 404 page
 
   const supabase = await createClient();
   const {
