@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui';
@@ -22,11 +23,14 @@ export default function TopBarDefault() {
         <Fom className="m-4 w-12 h-6" />
       </Link>
       {user ? (
-        <form action="/logout">
-          <Button className="border-l border-zinc-200" type="submit">
-            Logout
-          </Button>
-        </form>
+        <Link className="border-l border-zinc-200" href={`/${user.username}`}>
+          <Image
+            alt={user.username || 'User avatar'}
+            height={56}
+            src={user.avatar_url || '/avatars/defaults/avatar-o.png'}
+            width={56}
+          />
+        </Link>
       ) : (
         <Button className="border-l border-zinc-200" href="/login">
           Login
