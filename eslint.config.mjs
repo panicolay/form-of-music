@@ -34,12 +34,7 @@ const eslintConfig = [
           caughtErrorsIgnorePattern: '^_',
         },
       ],
-      // '@typescript-eslint/explicit-function-return-type': [
-      //   'warn',
-      //   {
-      //     allowExpressions: true,
-      //   },
-      // ],
+      '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/consistent-type-imports': [
         'error',
         {

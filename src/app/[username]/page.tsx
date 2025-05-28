@@ -8,11 +8,7 @@ import { getProfileByUsername } from './actions';
 
 const DEFAULT_AVATAR = '/avatars/defaults/avatar-o.png';
 
-export default async function ProfilePage({
-  params,
-}: {
-  params: { username: string };
-}) {
+export default async function Page({ params }: any) {
   const { username } = params;
   const { profile } = await getProfileByUsername(username);
 
