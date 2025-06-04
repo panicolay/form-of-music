@@ -16,7 +16,7 @@ export default function Button({
   const baseStyles = `
     inline-flex items-center px-4 h-14
     font-poppins text-sm uppercase text-zinc-200
-    border-zinc-200
+    border-zinc-500
     cursor-pointer
     hover:bg-zinc-800 hover:text-zinc-50
     focus:outline-none focus-visible:underline

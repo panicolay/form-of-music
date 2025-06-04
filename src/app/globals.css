@@ -4,11 +4,13 @@
   --font-sans: var(--font-inter);
   --font-mono: 'Roboto Mono', monospace;
   --font-poppins: var(--font-poppins);
+
+  --color-black: #000000;
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-zinc-950);
+  background-color: var(--color-black);
   color: var(--color-zinc-200);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

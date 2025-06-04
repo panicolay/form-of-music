@@ -15,15 +15,15 @@ export default function TopBarDefault() {
     <header
       className="
         w-full flex justify-between items-center
-        bg-zinc-950
-        border-b border-zinc-200
+        bg-black
+        border-b border-zinc-500
     "
     >
       <Link href="/">
         <Fom className="m-4 w-12 h-6" />
       </Link>
       {user ? (
-        <Link className="border-l border-zinc-200" href={`/${user.username}`}>
+        <Link className="border-l border-zinc-500" href={`/${user.username}`}>
           <Image
             alt={user.username || 'User avatar'}
             height={56}
@@ -32,7 +32,7 @@ export default function TopBarDefault() {
           />
         </Link>
       ) : (
-        <Button className="border-l border-zinc-200" href="/login">
+        <Button className="border-l" href="/login">
           Login
         </Button>
       )}
