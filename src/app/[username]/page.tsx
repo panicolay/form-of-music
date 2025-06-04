@@ -38,7 +38,10 @@ export default async function Page({ params }: any) {
         </h1>
 
         {isOwner && user && (
-          <Button className="border border-zinc-200" href="/settings">
+          <Button
+            className="border border-zinc-200"
+            href={`/${username}/settings`}
+          >
             Settings
           </Button>
         )}
