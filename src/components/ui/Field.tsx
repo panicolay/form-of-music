@@ -52,7 +52,7 @@ export default function Field({
                     text-base text-zinc-200
                     outline-none
                     focus:text-zinc-50
-                    transition-colors duration-120 ease-in-out d
+                    transition-colors duration-120 ease-in-out
                     ${props.className || ''}
                 `}
         id={name}

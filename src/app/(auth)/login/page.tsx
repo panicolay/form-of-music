@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, useTransition } from 'react';
+import Turnstile from 'react-turnstile';
 
 import { TopBarProcess } from '@/components/layout';
 import { Button, Field } from '@/components/ui';
@@ -10,10 +11,13 @@ import { Button, Field } from '@/components/ui';
 import { login } from './actions';
 import { loginSchema } from './validation';
 
+const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!;
+
 export default function LoginPage() {
   const [errors, setErrors] = useState({ email: '', password: '', global: '' });
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   function validate(email: string, password: string) {
     const result = loginSchema.safeParse({ email, password });
@@ -30,6 +34,16 @@ export default function LoginPage() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setErrors({ email: '', password: '', global: '' });
+
+    if (!turnstileToken) {
+      setErrors({
+        email: '',
+        password: '',
+        global: 'What is your true nature? Please try again.',
+      });
+      return;
+    }
+
     const form = event.currentTarget;
     const email = form.email.value;
     const password = form.password.value;
@@ -40,7 +54,7 @@ export default function LoginPage() {
     }
 
     startTransition(async () => {
-      const result = await login(email, password);
+      const result = await login(email, password, turnstileToken);
       if (
         result?.errors &&
         (result.errors.email || result.errors.password || result.errors.global)
@@ -96,8 +110,15 @@ export default function LoginPage() {
               type="password"
             />
 
+            <Turnstile
+              className="border-none"
+              refreshExpired="auto"
+              sitekey={siteKey}
+              onVerify={setTurnstileToken}
+            />
+
             <div className="flex">
-              <Button className="border-r-1" href="/">
+              <Button className="border-r" href="/">
                 Cancel
               </Button>
               <Button className="w-full" disabled={isPending} type="submit">

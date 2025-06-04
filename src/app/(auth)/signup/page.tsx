@@ -149,7 +149,7 @@ export default function SignUp() {
             />
 
             <div className="flex">
-              <Button className="border-r-1" href="/">
+              <Button className="border-r" href="/">
                 Cancel
               </Button>
               <Button className="w-full" disabled={isPending} type="submit">
