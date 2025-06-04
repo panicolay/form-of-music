@@ -2,9 +2,8 @@ import Image from 'next/image';
 
 import { TopBarDefault } from '@/components/layout';
 import { Button } from '@/components/ui';
+import { getProfileByUsername } from '@/lib/profiles';
 import { createClient } from '@/utils/supabase/server';
-
-import { getProfileByUsername } from './actions';
 
 const DEFAULT_AVATAR = '/avatars/defaults/avatar-o.png';
 
