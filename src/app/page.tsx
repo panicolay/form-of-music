@@ -1,7 +1,13 @@
 import { TopBarDefault } from '@/components/layout';
 import { Button } from '@/components/ui';
+import { createClient } from '@/utils/supabase/server';
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <>
       <TopBarDefault />
@@ -22,9 +28,11 @@ export default function Home() {
           <br />
           Music
         </h1>
-        <Button className="border" href="/signup">
-          Create an account
-        </Button>
+        {!user && (
+          <Button className="border" href="/signup">
+            Create an account
+          </Button>
+        )}
       </main>
     </>
   );

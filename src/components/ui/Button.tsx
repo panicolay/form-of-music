@@ -1,18 +1,28 @@
 import Link from 'next/link';
-import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import type {
+  ButtonHTMLAttributes,
+  AnchorHTMLAttributes,
+  ReactNode,
+  Ref,
+} from 'react';
 
-type ButtonProps = {
-  children: ReactNode;
-  href?: string;
-  className?: string;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+type ButtonProps =
+  | ({
+      ref?: Ref<HTMLButtonElement>;
+    } & ButtonHTMLAttributes<HTMLButtonElement> & {
+        children: ReactNode;
+        className?: string;
+      })
+  | ({
+      href: string;
+      ref?: Ref<HTMLAnchorElement>;
+    } & AnchorHTMLAttributes<HTMLAnchorElement> & {
+        children: ReactNode;
+        className?: string;
+      });
 
-export default function Button({
-  children,
-  href,
-  className = '',
-  ...props
-}: ButtonProps) {
+function Button(props: ButtonProps) {
+  const { children, className = '', href, ref, ...rest } = props as any;
   const baseStyles = `
     inline-flex items-center px-4 h-14
     font-poppins text-sm uppercase text-zinc-200
@@ -26,16 +36,34 @@ export default function Button({
   `;
 
   if (href) {
+    // On ne passe que les props valides pour <a>
+    const { target, rel, ...anchorProps } =
+      rest as AnchorHTMLAttributes<HTMLAnchorElement>;
     return (
-      <Link className={`${baseStyles} ${className}`} href={href}>
+      <Link
+        ref={ref as Ref<HTMLAnchorElement>}
+        className={`${baseStyles} ${className}`}
+        href={href}
+        rel={rel}
+        target={target}
+        {...anchorProps}
+      >
         {children}
       </Link>
     );
   }
 
+  // On ne passe que les props valides pour <button>
   return (
-    <button className={`${baseStyles} ${className}`} {...props}>
+    <button
+      ref={ref as Ref<HTMLButtonElement>}
+      className={`${baseStyles} ${className}`}
+      {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
+    >
       {children}
     </button>
   );
 }
+
+Button.displayName = 'Button';
+export default Button;

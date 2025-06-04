@@ -8,6 +8,7 @@ import { getProfileByUsername } from './actions';
 
 const DEFAULT_AVATAR = '/avatars/defaults/avatar-o.png';
 
+// Any is used because params is not typed in Next.js 15
 export default async function Page({ params }: any) {
   const { username } = params;
   const { profile } = await getProfileByUsername(username);
@@ -33,23 +34,14 @@ export default async function Page({ params }: any) {
           width={160}
         />
 
-        <div className="text-center">
-          <h1 className="text-2xl font-poppins font-semibold">
-            {profile.username}
-          </h1>
-          {isOwner && user && (
-            <div>
-              <p>{user.email}</p>
-            </div>
-          )}
-        </div>
+        <h1 className="text-center text-2xl font-poppins font-semibold">
+          {profile.username}
+        </h1>
 
         {isOwner && user && (
-          <form action="/logout">
-            <Button className="border border-zinc-200" type="submit">
-              Logout
-            </Button>
-          </form>
+          <Button className="border border-zinc-200" href="/settings">
+            Settings
+          </Button>
         )}
       </main>
     </>
