@@ -2,11 +2,8 @@ import { TopBarDefault } from '@/components/layout';
 import { getProfileByUsername } from '@/lib/profiles';
 import { createClient } from '@/utils/supabase/server';
 
-export default async function SettingsPage({
-  params,
-}: {
-  params: { username: string };
-}) {
+// Any is used because params is not typed in Next.js 15
+export default async function SettingsPage({ params }: any) {
   const supabase = await createClient();
   // Récupère l'utilisateur connecté
   const {
