@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import { TopBarDefault } from '@/components/layout';
+import IconPen from '@/components/svg/IconPen';
 import { Button } from '@/components/ui';
 import { getProfileByUsername } from '@/lib/profiles';
 import { createClient } from '@/utils/supabase/server';
@@ -48,21 +49,28 @@ export default async function SettingsPage({ params }: any) {
             <div className="font-poppins text-sm text-zinc-400 uppercase">
               Username
             </div>
-            <div className="text-zinc-200">{profile.username}</div>
+            <div className="flex gap-4 items-center text-zinc-200">
+              {profile.username} <IconPen className="text-zinc-400" size={16} />
+            </div>
           </div>
 
           <div className="flex h-16 px-4 items-center justify-between">
             <div className="font-poppins text-sm text-zinc-400 uppercase">
               Email
             </div>
-            <div className="text-zinc-200">{user.email || 'No email'}</div>
+            <div className="flex gap-4 items-center text-zinc-200">
+              {user.email || 'No email'}{' '}
+              <IconPen className="text-zinc-400" size={16} />
+            </div>
           </div>
 
           <div className="flex h-16 px-4 items-center justify-between">
             <div className="font-poppins text-sm text-zinc-400 uppercase">
               Password
             </div>
-            <div className="text-zinc-200">********</div>
+            <div className="flex gap-4 items-center text-zinc-200">
+              ******** <IconPen className="text-zinc-400" size={16} />
+            </div>
           </div>
         </div>
 
