@@ -25,9 +25,9 @@ const buttonVariants = cva(
         `,
         destructive: `
           text-rose-500 border-rose-500
-          hover:bg-rose-950 hover:text-rose-400
-          focus:bg-rose-950 focus:text-rose-400
-          active:bg-rose-950/50 active:text-rose-500
+          hover:bg-rose-950/50 hover:text-rose-500
+          focus:bg-rose-950/50 focus:text-rose-500
+          active:bg-rose-950/25 active:text-rose-500
         `,
       },
     },
