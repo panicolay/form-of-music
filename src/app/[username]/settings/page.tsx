@@ -27,11 +27,6 @@ export default async function SettingsPage({ params }: any) {
     );
   }
 
-  {
-    /* <main className="mx-4 my-10">
-<div className="max-w-md mx-auto space-y-10"> */
-  }
-
   return (
     <>
       <TopBarDefault />

@@ -35,7 +35,7 @@ export default async function RootLayout({
     <html lang="en">
       <body
         className={`
-          flex flex-col
+          flex flex-col pt-14
           ${inter.variable} ${poppins.variable}
         `}
       >

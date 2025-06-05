@@ -15,6 +15,7 @@ export default function TopBarProcess() {
   return (
     <header
       className="
+        fixed top-0 z-50
         w-full flex justify-between items-center
         bg-black
         border-b border-zinc-500
