@@ -1,24 +1,15 @@
-import type { ExtendedUser } from '../types/ExtendedUser';
-import { createClient } from '../utils/supabase/server';
+import type { User as SupabaseUser } from '@supabase/supabase-js';
 
-import { getProfileById } from './profiles';
-// TODO: improve imports?
+import type { ExtendedUser } from '@/types/ExtendedUser';
 
-export async function getUserWithProfile(userId: string) {
-  const supabase = await createClient();
-  const { profile } = await getProfileById(userId);
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user || !profile) return null;
-
+export function createExtendedUser(
+  user: SupabaseUser,
+  profile: any
+): ExtendedUser {
   return {
     id: user.id,
     email: user.email ?? '',
     username: profile.username,
     avatar_url: profile.avatar_url,
-  } as ExtendedUser;
+  };
 }
-
-// TODO: user plural for userS? and for profileS?

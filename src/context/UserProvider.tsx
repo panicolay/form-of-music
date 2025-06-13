@@ -2,6 +2,7 @@
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 import { useEffect, useState, type ReactNode } from 'react';
 
+import { createExtendedUser } from '@/lib/users';
 import type { ExtendedUser } from '@/types/ExtendedUser';
 import { createClient } from '@/utils/supabase/client';
 
@@ -23,21 +24,27 @@ export default function UserProvider({ user, children }: UserProviderProps) {
       return;
     }
 
-    const supabase = createClient();
+    let cancelled = false;
 
+    const supabase = createClient();
     supabase
       .from('profiles')
       .select('username, avatar_url')
       .eq('id', user.id)
       .single()
-      .then(({ data }) => {
-        setExtendedUser({
-          id: user.id,
-          email: user.email ?? '',
-          username: data?.username ?? null,
-          avatar_url: data?.avatar_url ?? null,
-        });
+      .then(({ data, error }) => {
+        if (cancelled) return;
+
+        if (error) {
+          console.error('Error fetching profile:', error);
+          return;
+        }
+        setExtendedUser(createExtendedUser(user, data));
       });
+
+    return () => {
+      cancelled = true;
+    };
   }, [user]);
 
   return (

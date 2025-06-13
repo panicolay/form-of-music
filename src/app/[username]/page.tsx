@@ -9,7 +9,7 @@ const DEFAULT_AVATAR = '/avatars/defaults/avatar-o.png';
 
 // Any is used because params is not typed in Next.js 15
 export default async function Profile({ params }: any) {
-  const { username } = params;
+  const { username } = await params;
   const { profile } = await getProfileByUsername(username);
 
   if (!profile) return <div>Profile not found.</div>; // TODO: add a 404 page

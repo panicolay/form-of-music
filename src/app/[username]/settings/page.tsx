@@ -4,13 +4,12 @@ import { Page } from '@/components/layout';
 import { SettingsTable } from '@/components/settings';
 import { Button } from '@/components/ui';
 import { getProfileById } from '@/lib/profiles';
-import type { ExtendedUser } from '@/types/ExtendedUser';
+import { createExtendedUser } from '@/lib/users';
 import { createClient } from '@/utils/supabase/server';
 
-// Any is used because params is not typed in Next.js 15
-export default async function SettingsPage({ params }: any) {
+export default async function SettingsPage() {
   const supabase = await createClient();
-  // Récupère l'utilisateur connecté
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -29,12 +28,7 @@ export default async function SettingsPage({ params }: any) {
     );
   }
 
-  const extendedUser: ExtendedUser = {
-    id: user.id,
-    email: user.email ?? '', // Fallback vide car l'email est requis
-    username: profile.username,
-    avatar_url: profile.avatar_url,
-  };
+  const extendedUser = createExtendedUser(user, profile);
 
   return (
     <Page>
