@@ -40,6 +40,7 @@ export default async function SettingsPage({ params }: any) {
         />
 
         <SettingsTable profile={profile} user={user} />
+        {/* TODO: send a full user ? (extended user) */}
 
         <Button className="w-full justify-center border" variant="destructive">
           Delete account
