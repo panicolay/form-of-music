@@ -5,6 +5,8 @@ import { useEffect, useState, type ReactNode } from 'react';
 import type { ExtendedUser } from '@/types/ExtendedUser';
 import { createClient } from '@/utils/supabase/client';
 
+// TODO: create index for types? utils? lib?
+
 import { UserContext } from './UserContext';
 
 interface UserProviderProps {
