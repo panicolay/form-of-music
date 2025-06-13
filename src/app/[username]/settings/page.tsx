@@ -31,21 +31,19 @@ export default async function SettingsPage() {
   const extendedUser = createExtendedUser(user, profile);
 
   return (
-    <Page>
-      <main className="flex flex-col w-full max-w-md mx-auto my-10 px-4 space-y-10 items-center">
-        <Image
-          alt="User avatar"
-          height={160}
-          src={extendedUser.avatar_url || '/avatars/defaults/avatar-o.png'}
-          width={160}
-        />
+    <Page align="center" width="centered">
+      <Image
+        alt="User avatar"
+        height={160}
+        src={extendedUser.avatar_url || '/avatars/defaults/avatar-o.png'}
+        width={160}
+      />
 
-        <SettingsTable user={extendedUser} />
+      <SettingsTable user={extendedUser} />
 
-        <Button className="w-full justify-center border" variant="destructive">
-          Delete account
-        </Button>
-      </main>
+      <Button className="w-full justify-center border" variant="destructive">
+        Delete account
+      </Button>
     </Page>
   );
 }

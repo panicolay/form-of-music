@@ -23,28 +23,21 @@ export default async function Profile({ params }: any) {
   const avatarUrl = profile.avatar_url || DEFAULT_AVATAR;
 
   return (
-    <Page>
-      <main className="flex flex-col items-center mx-4 my-10 gap-10">
-        <Image
-          alt={profile.username}
-          height={160}
-          src={avatarUrl}
-          width={160}
-        />
+    <Page align="center" width="centered">
+      <Image alt={profile.username} height={160} src={avatarUrl} width={160} />
 
-        <h1 className="text-center text-2xl font-poppins font-semibold">
-          {profile.username}
-        </h1>
+      <h1 className="text-center text-2xl font-poppins font-semibold">
+        {profile.username}
+      </h1>
 
-        {isOwner && user && (
-          <Button
-            className="border border-zinc-200"
-            href={`/${username}/settings`}
-          >
-            Settings
-          </Button>
-        )}
-      </main>
+      {isOwner && user && (
+        <Button
+          className="border border-zinc-200"
+          href={`/${username}/settings`}
+        >
+          Settings
+        </Button>
+      )}
     </Page>
   );
 }

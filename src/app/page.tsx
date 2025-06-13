@@ -10,29 +10,18 @@ export default async function Home() {
 
   return (
     <Page>
-      <main
-        className="
-          mx-4 my-10 space-y-10
-        "
-      >
-        <h1
-          className="
-            font-poppins font-semibold
-            text-7xl uppercase
-        "
-        >
-          The
-          <br />
-          Form of
-          <br />
-          Music
-        </h1>
-        {!user && (
-          <Button className="border" href="/signup">
-            Create an account
-          </Button>
-        )}
-      </main>
+      <h1 className="font-poppins font-semibold text-7xl uppercase">
+        The
+        <br />
+        Form of
+        <br />
+        Music
+      </h1>
+      {!user && (
+        <Button className="border" href="/signup">
+          Create an account
+        </Button>
+      )}
     </Page>
   );
 }

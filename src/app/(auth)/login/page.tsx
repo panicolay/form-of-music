@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useState, useTransition } from 'react';
 import Turnstile from 'react-turnstile';
 
-import { TopBarProcess } from '@/components/layout';
+import { Page } from '@/components/layout';
 import { Button, Field } from '@/components/ui';
 
 import { login } from './actions';
@@ -67,76 +67,71 @@ export default function LoginPage() {
   }
 
   return (
-    <>
-      <TopBarProcess />
-      <main className="mx-4 my-10">
-        <div className="max-w-md mx-auto space-y-10">
-          <h2
-            className="
+    <Page topBar="process" width="centered">
+      <h2
+        className="
         font-poppins font-semibold
         text-4xl uppercase
         "
-          >
-            Login
-          </h2>
-          {errors.global && (
-            <div
-              className="p-4
+      >
+        Login
+      </h2>
+      {errors.global && (
+        <div
+          className="p-4
           border border-rose-500
           text-rose-500 text-sm
         "
-            >
-              {errors.global}
-            </div>
-          )}
-          <form
-            noValidate
-            className="border border-zinc-500 divide-y divide-zinc-500"
-            onSubmit={handleSubmit}
-          >
-            <Field
-              autoFocus
-              required
-              error={errors.email}
-              label="Email"
-              name="email"
-              type="email"
-            />
-            <Field
-              required
-              error={errors.password}
-              label="Password"
-              name="password"
-              type="password"
-            />
-
-            <Turnstile
-              className="border-none"
-              refreshExpired="auto"
-              sitekey={siteKey}
-              onVerify={setTurnstileToken}
-            />
-
-            <div className="flex">
-              <Button className="border-r" href="/">
-                Cancel
-              </Button>
-              <Button className="w-full" disabled={isPending} type="submit">
-                {isPending ? 'Logging in...' : 'Log in'}
-              </Button>
-            </div>
-          </form>
-
-          <div>
-            <p>
-              Don&apos;t have an account yet?{' '}
-              <Link className="underline" href="/signup">
-                Sign up here
-              </Link>
-            </p>
-          </div>
+        >
+          {errors.global}
         </div>
-      </main>
-    </>
+      )}
+      <form
+        noValidate
+        className="border border-zinc-500 divide-y divide-zinc-500"
+        onSubmit={handleSubmit}
+      >
+        <Field
+          autoFocus
+          required
+          error={errors.email}
+          label="Email"
+          name="email"
+          type="email"
+        />
+        <Field
+          required
+          error={errors.password}
+          label="Password"
+          name="password"
+          type="password"
+        />
+
+        <Turnstile
+          className="border-none"
+          refreshExpired="auto"
+          sitekey={siteKey}
+          onVerify={setTurnstileToken}
+        />
+
+        <div className="flex">
+          <Button className="border-r" href="/">
+            Cancel
+          </Button>
+          <Button className="w-full" disabled={isPending} type="submit">
+            {isPending ? 'Logging in...' : 'Log in'}
+          </Button>
+        </div>
+      </form>
+
+      <div>
+        <p>
+          Don&apos;t have an account yet?{' '}
+          <Link className="underline" href="/signup">
+            Sign up here
+          </Link>
+        </p>
+      </div>
+    </Page>
   );
 }
