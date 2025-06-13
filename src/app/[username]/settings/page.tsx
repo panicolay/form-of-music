@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
-import { TopBarDefault } from '@/components/layout';
-import IconPen from '@/components/svg/IconPen';
+import { Page } from '@/components/layout';
+import { SettingsTable } from '@/components/settings';
 import { Button } from '@/components/ui';
 import { getProfileByUsername } from '@/lib/profiles';
 import { createClient } from '@/utils/supabase/server';
@@ -20,6 +20,7 @@ export default async function SettingsPage({ params }: any) {
   }
 
   const { profile } = await getProfileByUsername(params.username);
+  //TODO : pourquoi ne pas récupérer par l'id ?
 
   if (!profile || profile.id !== user.id) {
     return (
@@ -29,8 +30,7 @@ export default async function SettingsPage({ params }: any) {
   }
 
   return (
-    <>
-      <TopBarDefault />
+    <Page>
       <main className="flex flex-col w-full max-w-md mx-auto my-10 px-4 space-y-10 items-center">
         <Image
           alt={profile.username}
@@ -39,45 +39,12 @@ export default async function SettingsPage({ params }: any) {
           width={160}
         />
 
-        <div
-          className="
-            flex flex-col w-full
-            border border-zinc-500 divide-y divide-zinc-500
-          "
-        >
-          <div className="flex h-16 px-4 items-center justify-between">
-            <div className="font-poppins text-sm text-zinc-400 uppercase">
-              Username
-            </div>
-            <div className="flex gap-4 items-center text-zinc-200">
-              {profile.username} <IconPen className="text-zinc-400" size={16} />
-            </div>
-          </div>
-
-          <div className="flex h-16 px-4 items-center justify-between">
-            <div className="font-poppins text-sm text-zinc-400 uppercase">
-              Email
-            </div>
-            <div className="flex gap-4 items-center text-zinc-200">
-              {user.email || 'No email'}{' '}
-              <IconPen className="text-zinc-400" size={16} />
-            </div>
-          </div>
-
-          <div className="flex h-16 px-4 items-center justify-between">
-            <div className="font-poppins text-sm text-zinc-400 uppercase">
-              Password
-            </div>
-            <div className="flex gap-4 items-center text-zinc-200">
-              ******** <IconPen className="text-zinc-400" size={16} />
-            </div>
-          </div>
-        </div>
+        <SettingsTable profile={profile} user={user} />
 
         <Button className="w-full justify-center border" variant="destructive">
           Delete account
         </Button>
       </main>
-    </>
+    </Page>
   );
 }

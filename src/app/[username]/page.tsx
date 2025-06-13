@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { TopBarDefault } from '@/components/layout';
+import { Page } from '@/components/layout';
 import { Button } from '@/components/ui';
 import { getProfileByUsername } from '@/lib/profiles';
 import { createClient } from '@/utils/supabase/server';
@@ -8,7 +8,7 @@ import { createClient } from '@/utils/supabase/server';
 const DEFAULT_AVATAR = '/avatars/defaults/avatar-o.png';
 
 // Any is used because params is not typed in Next.js 15
-export default async function Page({ params }: any) {
+export default async function Profile({ params }: any) {
   const { username } = params;
   const { profile } = await getProfileByUsername(username);
 
@@ -23,8 +23,7 @@ export default async function Page({ params }: any) {
   const avatarUrl = profile.avatar_url || DEFAULT_AVATAR;
 
   return (
-    <>
-      <TopBarDefault />
+    <Page>
       <main className="flex flex-col items-center mx-4 my-10 gap-10">
         <Image
           alt={profile.username}
@@ -46,6 +45,6 @@ export default async function Page({ params }: any) {
           </Button>
         )}
       </main>
-    </>
+    </Page>
   );
 }

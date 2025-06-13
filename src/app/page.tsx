@@ -1,4 +1,4 @@
-import { TopBarDefault } from '@/components/layout';
+import { Page } from '@/components/layout';
 import { Button } from '@/components/ui';
 import { createClient } from '@/utils/supabase/server';
 
@@ -9,8 +9,7 @@ export default async function Home() {
   } = await supabase.auth.getUser();
 
   return (
-    <>
-      <TopBarDefault />
+    <Page>
       <main
         className="
           mx-4 my-10 space-y-10
@@ -34,6 +33,6 @@ export default async function Home() {
           </Button>
         )}
       </main>
-    </>
+    </Page>
   );
 }

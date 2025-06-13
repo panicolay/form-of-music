@@ -33,12 +33,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body
-        className={`
-          flex flex-col pt-14
-          ${inter.variable} ${poppins.variable}
-        `}
-      >
+      <body className={`${inter.variable} ${poppins.variable}`}>
         <UserProvider user={user}>{children}</UserProvider>
       </body>
     </html>
