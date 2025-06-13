@@ -62,30 +62,32 @@ Modal.Portal = function ModalPortal({ children, open }: ModalPortalProps) {
               transition={{ duration: 0.16, ease: 'easeOut' }}
             />
           </Dialog.Overlay>
-          <div className="fixed inset-0 flex items-start justify-center max-w-md mx-auto px-4 pt-24 z-50">
-            {/* TODO: find a way to remove this div */}
-            <Dialog.Content asChild forceMount>
-              <motion.div
-                key="content"
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                className="w-full bg-black border border-zinc-500"
-                exit={{
-                  opacity: 0,
-                  y: 8,
-                  scale: 0.99,
-                  transition: { duration: 0.08, delay: 0, ease: 'easeIn' },
-                }}
-                initial={{ opacity: 0, y: 8, scale: 0.99 }}
-                transition={{
-                  duration: 0.08,
-                  delay: 0.08,
-                  ease: 'easeOut',
-                }}
-              >
-                {children}
-              </motion.div>
-            </Dialog.Content>
-          </div>
+          <Dialog.Content asChild forceMount>
+            <motion.div
+              key="content"
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              className="
+                fixed top-24 left-1/2 -translate-x-1/2
+                z-50
+                max-w-md w-[calc(100%-4rem)]
+                bg-black border border-zinc-500
+              "
+              exit={{
+                opacity: 0,
+                y: 8,
+                scale: 0.99,
+                transition: { duration: 0.08, delay: 0, ease: 'easeIn' },
+              }}
+              initial={{ opacity: 0, y: 8, scale: 0.99 }}
+              transition={{
+                duration: 0.08,
+                delay: 0.08,
+                ease: 'easeOut',
+              }}
+            >
+              {children}
+            </motion.div>
+          </Dialog.Content>
         </Dialog.Portal>
       )}
     </AnimatePresence>

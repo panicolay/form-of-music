@@ -12,7 +12,7 @@ const mainVariants = cva(
   {
     variants: {
       width: {
-        full: '',
+        full: 'w-full',
         centered: 'max-w-md w-full mx-auto',
       },
       align: {
