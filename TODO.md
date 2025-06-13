@@ -6,3 +6,5 @@
 - [ ] Improve ProcessTopbar close ?
 - [ ] Error management for username at user creation
 - [ ] Improve user connection, session
+
+Other todo can be in related file.

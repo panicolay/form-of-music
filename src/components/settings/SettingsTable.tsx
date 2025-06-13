@@ -4,26 +4,20 @@ import { useState } from 'react';
 
 import IconPen from '@/components/svg/IconPen';
 import { Button, Modal } from '@/components/ui';
-import type { ExtendedUser } from '@/types/ExtendedUser'; // TODO: why is this imported here ?
+import type { ExtendedUser } from '@/types/ExtendedUser';
 
 interface SettingsTableProps {
-  profile: {
-    username: string;
-    avatar_url: string | null;
-  };
-  user: {
-    email: string | null | undefined;
-  };
+  user: ExtendedUser;
 }
 
-export default function SettingsTable({ profile, user }: SettingsTableProps) {
+export default function SettingsTable({ user }: SettingsTableProps) {
   const [openModal, setOpenModal] = useState<string | null>(null);
 
   const settings = [
     {
       id: 'username',
       label: 'Username',
-      value: profile.username,
+      value: user.username || 'No username',
     },
     {
       id: 'email',

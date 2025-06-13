@@ -85,8 +85,6 @@ export default function SignUp() {
     });
   }
 
-  // TODO: Regarder ce que sont max-w-md et mx-auto
-  // et comment les utiliser (Tailwind CSS)
   return (
     <>
       <TopBarProcess />
