@@ -88,7 +88,7 @@ export default function LoginPage() {
       )}
       <form
         noValidate
-        className="border border-zinc-500 divide-y divide-zinc-500"
+        className="border border-zinc-500 divide-y divide-zinc-500 w-full"
         onSubmit={handleSubmit}
       >
         <Field
