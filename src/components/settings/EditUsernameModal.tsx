@@ -69,28 +69,36 @@ export default function EditUsernameModal({
           Username
         </Modal.Header>
 
-        <Modal.Content>
-          <Field
-            required
-            error={error}
-            label="Username"
-            name="username"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </Modal.Content>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSave();
+          }}
+        >
+          <Modal.Content>
+            <Field
+              required
+              className="border border-zinc-500"
+              error={error}
+              label="Username"
+              name="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </Modal.Content>
 
-        <Modal.Footer>
-          <Modal.Close>
-            <Button disabled={isLoading} onClick={handleClose}>
-              Cancel
+          <Modal.Footer>
+            <Modal.Close>
+              <Button disabled={isLoading} onClick={handleClose}>
+                Cancel
+              </Button>
+            </Modal.Close>
+            <Button className="w-full" disabled={isLoading} type="submit">
+              {isLoading ? 'Saving...' : 'Save'}
             </Button>
-          </Modal.Close>
-          <Button className="w-full" disabled={isLoading} onClick={handleSave}>
-            {isLoading ? 'Saving...' : 'Save'}
-          </Button>
-        </Modal.Footer>
+          </Modal.Footer>
+        </form>
       </Modal.Portal>
     </Modal>
   );

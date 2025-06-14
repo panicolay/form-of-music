@@ -17,6 +17,7 @@ export default function Field({
   error,
   instruction,
   type = 'text',
+  className,
   ...props
 }: FieldProps) {
   return (
@@ -27,6 +28,7 @@ export default function Field({
             cursor-text
             focus-within:bg-zinc-800
             transition-colors duration-120 ease-in-out
+            ${className || ''}
         `}
     >
       <span
@@ -48,13 +50,12 @@ export default function Field({
               : undefined
         }
         aria-invalid={!!error}
-        className={`
+        className="
                     text-base text-zinc-200
                     outline-none
                     focus:text-zinc-50
                     transition-colors duration-120 ease-in-out
-                    ${props.className || ''}
-                `}
+                "
         id={name}
         name={name}
         type={type}
