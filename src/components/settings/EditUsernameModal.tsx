@@ -38,19 +38,27 @@ export default function EditUsernameModal({
     setError('');
 
     try {
-      // TODO: Appel API pour sauvegarder
-      console.log('Saving username:', username);
+      const { updateUsername } = await import('@/lib/profiles');
+      const result = await updateUsername(user.id, username);
 
-      // Simuler un délai d'API
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      if (!result.success) {
+        setError(result.error || 'Failed to update username');
+        return;
+      }
 
-      // Fermer la modal après succès
       onOpenChange(false);
+
+      if (result.newUsername) {
+        window.location.href = `/${result.newUsername}/settings`;
+      }
     } catch (err) {
       setError('Failed to update username');
     } finally {
       setIsLoading(false);
     }
+
+    // TODO: Linter alert for err
+    // TODO: Should we use validation like in (auth)?
   };
 
   // Reset quand on ferme la modal

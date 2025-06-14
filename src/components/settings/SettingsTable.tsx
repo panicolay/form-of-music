@@ -73,6 +73,8 @@ export default function SettingsTable({ user }: SettingsTableProps) {
         </tbody>
       </table>
 
+      {/* TODO: make rows accessible (focusable, etc.) */}
+
       {mountedModal === 'username' && (
         <EditUsernameModal
           open={openModal === 'username'}
