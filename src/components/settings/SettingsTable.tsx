@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+import { EditUsernameModal } from '@/components/settings';
 import IconPen from '@/components/svg/IconPen';
 import { Button, Modal } from '@/components/ui';
 import type { ExtendedUser } from '@/types/ExtendedUser';
