@@ -69,7 +69,7 @@ Modal.Portal = function ModalPortal({ children, open }: ModalPortalProps) {
               className="
                 fixed top-24 left-1/2 -translate-x-1/2
                 z-50
-                max-w-md w-[calc(100%-4rem)]
+                max-w-[26rem] w-[calc(100%-4rem)]
                 bg-black border border-zinc-500
               "
               exit={{
