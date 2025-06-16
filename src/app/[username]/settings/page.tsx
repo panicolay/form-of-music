@@ -1,31 +1,36 @@
 import Image from 'next/image';
+import { notFound, redirect } from 'next/navigation';
+// TODO : notFound = 404?
 
 import { Page } from '@/components/layout';
 import { SettingsTable } from '@/components/settings';
 import { Button } from '@/components/ui';
-import { getProfileById } from '@/lib/profiles';
+import { getProfileByUsername } from '@/lib/profiles';
 import { createExtendedUser } from '@/lib/users';
 import { createClient } from '@/utils/supabase/server';
 
-export default async function SettingsPage() {
+// Any is used because params is not typed (Next.js 15
+export default async function SettingsPage({ params }: any) {
+  const { username } = await params;
   const supabase = await createClient();
 
   const {
     data: { user },
   } = await supabase.auth.getUser();
+  // TODO: pourquoi pas juste user (sans data) ?
 
   if (!user) {
-    // TODO: add a 404 page
-    return <div>Accès refusé : vous devez être connecté.</div>;
+    redirect('/login');
   }
 
-  const { profile } = await getProfileById(user.id);
+  const { profile } = await getProfileByUsername(username);
 
   if (!profile) {
-    return (
-      // TODO: add a 404 page
-      <div>Accès refusé : vous ne pouvez voir que vos propres paramètres.</div>
-    );
+    notFound();
+  }
+
+  if (user.id !== profile.id) {
+    redirect('/closeddoor');
   }
 
   const extendedUser = createExtendedUser(user, profile);
