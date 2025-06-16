@@ -4,7 +4,7 @@ import { Page } from '@/components/layout';
 
 export default function SignupVerify() {
   return (
-    <Page align="center" topBar="minimal" width="centered">
+    <Page align="center" topBar="minimal" width="medium">
       <Image
         alt="Envelope"
         className="mx-auto"

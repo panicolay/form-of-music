@@ -86,7 +86,7 @@ export default function SignUp() {
   }
 
   return (
-    <Page topBar="process" width="centered">
+    <Page topBar="process" width="medium">
       <h2
         className="
             font-poppins font-semibold

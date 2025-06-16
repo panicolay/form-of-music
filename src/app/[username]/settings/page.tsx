@@ -30,13 +30,13 @@ export default async function SettingsPage({ params }: any) {
   }
 
   if (user.id !== profile.id) {
-    redirect('/closeddoor');
+    redirect('/forbidden');
   }
 
   const extendedUser = createExtendedUser(user, profile);
 
   return (
-    <Page align="center" width="centered">
+    <Page align="center" width="medium">
       <Image
         alt="User avatar"
         height={160}

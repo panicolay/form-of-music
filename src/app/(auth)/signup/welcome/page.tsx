@@ -5,7 +5,7 @@ import { Button } from '@/components/ui';
 
 export default function Welcome() {
   return (
-    <Page align="center" topBar="minimal" width="centered">
+    <Page align="center" topBar="minimal" width="medium">
       <Image
         alt="Door"
         className="mx-auto"

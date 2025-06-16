@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 
 import { Page } from '@/components/layout';
 import { Button } from '@/components/ui';
@@ -12,7 +13,9 @@ export default async function Profile({ params }: any) {
   const { username } = await params;
   const { profile } = await getProfileByUsername(username);
 
-  if (!profile) return <div>Profile not found.</div>; // TODO: add a 404 page
+  if (!profile) {
+    notFound();
+  }
 
   const supabase = await createClient();
   const {
@@ -23,7 +26,7 @@ export default async function Profile({ params }: any) {
   const avatarUrl = profile.avatar_url || DEFAULT_AVATAR;
 
   return (
-    <Page align="center" width="centered">
+    <Page align="center" width="medium">
       <Image alt={profile.username} height={160} src={avatarUrl} width={160} />
 
       <h1 className="text-center text-2xl font-poppins font-semibold">

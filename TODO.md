@@ -6,7 +6,7 @@
 - [ ] Improve ProcessTopbar close ?
 - [ ] Add storybook
 - [ ] Error management for username at user creation
-- [ ] 404 page
+- [ ] 404 page : pour un utilisateur connecté, redirigé vers not_found quand une page non protégée n'existe pas (plutôt que vers login)
 - [ ] Not authorized
 
 Other todo can be in related file.
