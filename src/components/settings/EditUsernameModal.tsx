@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { Button, Field, Modal } from '@/components/ui';
@@ -16,6 +17,7 @@ export default function EditUsernameModal({
   open,
   onOpenChange,
 }: EditUsernameModalProps) {
+  const router = useRouter();
   // État local pour le formulaire
   const [username, setUsername] = useState(user.username || '');
   const [isLoading, setIsLoading] = useState(false);
@@ -49,7 +51,8 @@ export default function EditUsernameModal({
       onOpenChange(false);
 
       if (result.newUsername) {
-        window.location.href = `/${result.newUsername}/settings`;
+        router.push(`/${result.newUsername}/settings`);
+        router.refresh();
       }
     } catch (err) {
       setError('Failed to update username');
