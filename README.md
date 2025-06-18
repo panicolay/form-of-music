@@ -40,8 +40,8 @@ Web project based on Next.js 15 and TypeScript.
 ## Quick start
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 ---
