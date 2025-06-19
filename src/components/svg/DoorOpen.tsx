@@ -1,13 +1,13 @@
 import React from 'react';
 
-interface EnvelopeProps extends React.SVGProps<SVGSVGElement> {
+interface DoorOpenProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }
 
-export default function Envelope({ size = 160, ...props }: EnvelopeProps) {
+export default function DoorOpen({ size = 160, ...props }: DoorOpenProps) {
   return (
     <svg
-      aria-label="Envelope illustration"
+      aria-label="Open door illustration"
       fill="none"
       height={size}
       role="img"
@@ -17,25 +17,23 @@ export default function Envelope({ size = 160, ...props }: EnvelopeProps) {
       {...props}
     >
       <path
-        d="M6 26 L154 26 L154 134 L6 134 Z"
-        fill="none"
-        stroke="url(#paint0_linear_634_288)"
+        d="M26 154L108 132.028V6"
+        stroke="url(#paint0_linear_633_224)"
         strokeWidth="2"
       />
       <path
-        d="M6 26 L80 96 L154 26"
-        fill="none"
-        stroke="url(#paint0_linear_634_288)"
+        d="M134 154V6H26V154H134Z"
+        stroke="url(#paint0_linear_633_224)"
         strokeWidth="2"
       />
       <defs>
         <linearGradient
           gradientUnits="userSpaceOnUse"
-          id="paint0_linear_634_288"
-          x1="154"
-          x2="6"
-          y1="26"
-          y2="134"
+          id="paint0_linear_633_224"
+          x1="26"
+          x2="139.316"
+          y1="6"
+          y2="123.902"
         >
           <stop offset="0.0739185" stopColor="#52525B" />
           <stop offset="0.559254" stopColor="#D4D4D8" />

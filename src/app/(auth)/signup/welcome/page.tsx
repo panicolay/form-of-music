@@ -1,18 +1,11 @@
-import Image from 'next/image';
-
 import { Page } from '@/components/layout';
+import { DoorOpen } from '@/components/svg';
 import { Button } from '@/components/ui';
 
 export default function Welcome() {
   return (
     <Page align="center" topBar="minimal" width="medium">
-      <Image
-        alt="Door"
-        className="mx-auto"
-        height={160}
-        src="/ilu-door-open.png"
-        width={160}
-      />
+      <DoorOpen />
       <h2 className="font-poppins font-medium text-2xl uppercase">
         We&apos;ve been expecting you
       </h2>

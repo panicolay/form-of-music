@@ -1,13 +1,12 @@
-import Image from 'next/image';
-
 import { Page } from '@/components/layout';
+import { Nothing, PathDissolved, DoorNowhere } from '@/components/svg';
 import { Button } from '@/components/ui';
 
 function getNotFoundMessages() {
   const messages = [
     {
-      alt: 'Door',
-      image: '/ilu-door-closed.png',
+      alt: 'Nothing',
+      image: Nothing,
       title: 'There is nothing',
       line1: 'The greatest form is the formless',
       line2: 'the most perfect page',
@@ -15,8 +14,8 @@ function getNotFoundMessages() {
       button: 'Explore the known',
     },
     {
-      alt: 'Door',
-      image: '/ilu-door-closed.png',
+      alt: 'Path dissolved',
+      image: PathDissolved,
       title: 'The path dissolved',
       line1: 'What you seek has wandered elsewhere',
       line2: 'perhaps it never was',
@@ -24,8 +23,8 @@ function getNotFoundMessages() {
       button: 'Find another way',
     },
     {
-      alt: 'Door',
-      image: '/ilu-door-closed.png',
+      alt: 'Door to nowhere',
+      image: DoorNowhere,
       title: 'A door to nowhere',
       line1: 'What may have been here became absence',
       line2: 'even memories fade eventually',
@@ -44,13 +43,7 @@ export default function NotFound() {
 
   return (
     <Page align="center" topBar="minimal" width="medium">
-      <Image
-        alt={messages.alt}
-        className="mx-auto"
-        height={160}
-        src={messages.image}
-        width={160}
-      />
+      <messages.image />
       <h2 className="font-poppins font-medium text-2xl uppercase">
         {messages.title}
       </h2>

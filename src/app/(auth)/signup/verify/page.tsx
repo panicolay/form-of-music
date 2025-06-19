@@ -1,17 +1,10 @@
-import Image from 'next/image';
-
 import { Page } from '@/components/layout';
+import { Envelope } from '@/components/svg';
 
 export default function SignupVerify() {
   return (
     <Page align="center" topBar="minimal" width="medium">
-      <Image
-        alt="Envelope"
-        className="mx-auto"
-        height={160}
-        src="/ilu-envelope.png"
-        width={160}
-      />
+      <Envelope />
       <h2 className="font-poppins font-medium text-2xl uppercase">
         A message has been sent
       </h2>

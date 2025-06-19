@@ -1,13 +1,16 @@
 import React from 'react';
 
-interface EnvelopeProps extends React.SVGProps<SVGSVGElement> {
+interface DoorNowhereProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }
 
-export default function Envelope({ size = 160, ...props }: EnvelopeProps) {
+export default function DoorNowhere({
+  size = 160,
+  ...props
+}: DoorNowhereProps) {
   return (
     <svg
-      aria-label="Envelope illustration"
+      aria-label="Door to nowhere illustration"
       fill="none"
       height={size}
       role="img"
@@ -16,26 +19,22 @@ export default function Envelope({ size = 160, ...props }: EnvelopeProps) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <path
-        d="M6 26 L154 26 L154 134 L6 134 Z"
-        fill="none"
-        stroke="url(#paint0_linear_634_288)"
+      <rect
+        height="148"
+        stroke="url(#paint0_linear_633_127)"
         strokeWidth="2"
-      />
-      <path
-        d="M6 26 L80 96 L154 26"
-        fill="none"
-        stroke="url(#paint0_linear_634_288)"
-        strokeWidth="2"
+        width="108"
+        x="26"
+        y="6"
       />
       <defs>
         <linearGradient
           gradientUnits="userSpaceOnUse"
-          id="paint0_linear_634_288"
-          x1="154"
-          x2="6"
-          y1="26"
-          y2="134"
+          id="paint0_linear_633_127"
+          x1="26"
+          x2="134"
+          y1="6"
+          y2="154"
         >
           <stop offset="0.0739185" stopColor="#52525B" />
           <stop offset="0.559254" stopColor="#D4D4D8" />

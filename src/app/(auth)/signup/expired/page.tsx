@@ -1,18 +1,11 @@
-import Image from 'next/image';
-
 import { Page } from '@/components/layout';
+import { DoorFaded } from '@/components/svg';
 import { Button } from '@/components/ui';
 
 export default function Expired() {
   return (
     <Page align="center" topBar="minimal" width="medium">
-      <Image
-        alt="Door" // TODO: improve alt
-        className="mx-auto"
-        height={160}
-        src="/ilu-door-closed.png"
-        width={160}
-      />
+      <DoorFaded />
       <h2 className="font-poppins font-medium text-2xl uppercase">
         The door faded, eventually
       </h2>
