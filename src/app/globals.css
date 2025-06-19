@@ -15,3 +15,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Custom text selection colors */
+::selection {
+  background-color: rgba(82, 82, 91, 0.8);
+  color: var(--color-zinc-100);
+}
+
+/* For Firefox */
+::-moz-selection {
+  background-color: rgba(82, 82, 91, 0.8);
+  color: var(--color-zinc-100);
+}

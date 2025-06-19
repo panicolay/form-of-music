@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import { IconPen } from '@/components/icons';
-import { EditUsernameModal } from '@/components/settings';
+import { EditEmailModal, EditUsernameModal } from '@/components/settings';
 import { Button, Modal } from '@/components/ui';
 import type { ExtendedUser } from '@/types/ExtendedUser';
 
@@ -93,27 +93,11 @@ export default function SettingsTable({ user }: SettingsTableProps) {
       )}
 
       {mountedModal === 'email' && (
-        <Modal
+        <EditEmailModal
           open={openModal === 'email'}
+          user={user}
           onOpenChange={(open) => handleCloseModal(open, 'email')}
-        >
-          <Modal.Portal open={openModal === 'email'}>
-            <Modal.Header>
-              Edit
-              <br />
-              Email
-            </Modal.Header>
-            <Modal.Content>
-              <p>This is the content of the modal</p>
-            </Modal.Content>
-            <Modal.Footer>
-              <Modal.Close>
-                <Button>Cancel</Button>
-              </Modal.Close>
-              <Button className="w-full">Save</Button>
-            </Modal.Footer>
-          </Modal.Portal>
-        </Modal>
+        />
       )}
 
       {mountedModal === 'password' && (

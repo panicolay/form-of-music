@@ -62,3 +62,30 @@ export async function updateUsername(userId: string, newUsername: string) {
 
   return { success: true, newUsername };
 }
+
+export async function updateEmail(newEmail: string) {
+  // Validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(newEmail)) {
+    return { success: false, error: 'Please enter a valid email address' };
+  }
+
+  // TODO: should we use zod to validate the email?
+
+  const supabase = await createClient();
+
+  // Update email through Supabase Auth
+  // This will send a confirmation email to the new address
+  const { error } = await supabase.auth.updateUser({
+    email: newEmail,
+  });
+
+  if (error) {
+    return { success: false, error: error.message };
+  }
+
+  return {
+    success: true,
+    message: 'Check your new email address for a confirmation link',
+  };
+}
