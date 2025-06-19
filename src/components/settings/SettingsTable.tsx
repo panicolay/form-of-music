@@ -31,6 +31,13 @@ export default function SettingsTable({ user }: SettingsTableProps) {
     }
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent, settingId: string) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleOpenModal(settingId);
+    }
+  };
+
   const settings = [
     {
       id: 'username',
@@ -56,8 +63,12 @@ export default function SettingsTable({ user }: SettingsTableProps) {
           {settings.map((setting) => (
             <tr
               key={setting.id}
-              className="h-16 border-b border-zinc-500 cursor-pointer hover:bg-zinc-950"
+              aria-label={`Edit ${setting.label}: ${setting.value}`}
+              className="h-16 border-b border-zinc-500 cursor-pointer hover:bg-zinc-900"
+              role="button"
+              tabIndex={0}
               onClick={() => handleOpenModal(setting.id)}
+              onKeyDown={(e) => handleKeyDown(e, setting.id)}
             >
               <td className="font-poppins text-sm text-zinc-400 uppercase px-4">
                 {setting.label}
@@ -72,8 +83,6 @@ export default function SettingsTable({ user }: SettingsTableProps) {
           ))}
         </tbody>
       </table>
-
-      {/* TODO: make rows accessible (focusable, etc.) */}
 
       {mountedModal === 'username' && (
         <EditUsernameModal

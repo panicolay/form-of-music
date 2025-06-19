@@ -1,6 +1,5 @@
 # TODO
 
-- [ ] 404 page illustrations
 - [ ] Forbidden page message and illustrations
 - [ ] Delete account
 - [ ] Make Icon components who serve several sizes (16px and 24px)
