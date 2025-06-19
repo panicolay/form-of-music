@@ -4,20 +4,31 @@ export default function Envelope({ ...props }: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       fill="none"
-      height="24"
-      viewBox="0 0 24 24"
-      width="24"
+      height="160"
+      viewBox="0 0 160 160"
+      width="160"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <rect
-        className="fill-zinc-300"
-        height="16"
-        transform="translate(2 4)"
-        width="20"
+      <path
+        d="M154 26L154 134L6 134L6 26M154 26L6 26M154 26L80 96L6 26"
+        stroke="url(#paint0_linear_634_288)"
+        stroke-width="2"
       />
-      <path className="fill-zinc-200" d="M12 10L2 20H22L12 10Z" />
-      <path className="fill-zinc-100" d="M12 14L2 4H22L12 14Z" />
+      <defs>
+        <linearGradient
+          gradientUnits="userSpaceOnUse"
+          id="paint0_linear_634_288"
+          x1="154"
+          x2="6"
+          y1="26"
+          y2="134"
+        >
+          <stop offset="0.0739185" stop-color="#52525B" />
+          <stop offset="0.559254" stop-color="#D4D4D8" />
+          <stop offset="0.975531" stop-color="#52525B" />
+        </linearGradient>
+      </defs>
     </svg>
   );
 }
