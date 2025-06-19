@@ -9,7 +9,7 @@ import type {
 
 const buttonVariants = cva(
   `
-    inline-flex items-center px-4 h-14
+    inline-flex items-center px-4
     font-poppins text-sm uppercase
     cursor-pointer
     transition-colors duration-120 ease-in-out
@@ -30,9 +30,14 @@ const buttonVariants = cva(
           active:bg-rose-950/25 active:text-rose-500
         `,
       },
+      size: {
+        default: 'h-14',
+        auto: 'h-auto',
+      },
     },
     defaultVariants: {
       variant: 'default',
+      size: 'default',
     },
   }
 );
@@ -41,6 +46,7 @@ type ButtonProps =
   | ({
       ref?: Ref<HTMLButtonElement>;
       variant?: 'default' | 'destructive';
+      size?: 'default' | 'auto';
     } & ButtonHTMLAttributes<HTMLButtonElement> &
       VariantProps<typeof buttonVariants> & {
         children: ReactNode;
@@ -50,6 +56,7 @@ type ButtonProps =
       href: string;
       ref?: Ref<HTMLAnchorElement>;
       variant?: 'default' | 'destructive';
+      size?: 'default' | 'auto';
     } & AnchorHTMLAttributes<HTMLAnchorElement> &
       VariantProps<typeof buttonVariants> & {
         children: ReactNode;
@@ -63,6 +70,7 @@ function Button(props: ButtonProps) {
     href,
     ref,
     variant = 'default',
+    size = 'default',
     ...rest
   } = props as any;
 
@@ -73,7 +81,7 @@ function Button(props: ButtonProps) {
     return (
       <Link
         ref={ref as Ref<HTMLAnchorElement>}
-        className={buttonVariants({ variant, className })}
+        className={buttonVariants({ variant, size, className })}
         href={href}
         rel={rel}
         target={target}
@@ -88,7 +96,7 @@ function Button(props: ButtonProps) {
   return (
     <button
       ref={ref as Ref<HTMLButtonElement>}
-      className={buttonVariants({ variant, className })}
+      className={buttonVariants({ variant, size, className })}
       {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
     >
       {children}

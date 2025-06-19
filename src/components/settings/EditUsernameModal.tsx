@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 import { Button, Field, Modal } from '@/components/ui';
 import type { ExtendedUser } from '@/types/ExtendedUser';
+import { generateUsername } from '@/utils/generateUsername';
 
 interface EditUsernameModalProps {
   user: ExtendedUser;
@@ -64,6 +65,13 @@ export default function EditUsernameModal({
     // TODO: Should we use validation like in (auth)?
   };
 
+  // Fonction pour générer un username aléatoire
+  const handleGenerate = () => {
+    const newUsername = generateUsername();
+    setUsername(newUsername);
+    setError(''); // Clear any existing errors
+  };
+
   // Reset quand on ferme la modal
   const handleClose = () => {
     setUsername(user.username || '');
@@ -87,16 +95,26 @@ export default function EditUsernameModal({
           }}
         >
           <Modal.Content>
-            <Field
-              required
-              className="border border-zinc-500"
-              error={error}
-              label="Username"
-              name="username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
+            <div className="flex border border-zinc-500 divide-x divide-zinc-500">
+              <Field
+                required
+                className="flex-1"
+                error={error}
+                label="Username"
+                name="username"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <Button
+                disabled={isLoading}
+                size="auto"
+                type="button"
+                onClick={handleGenerate}
+              >
+                Generate
+              </Button>
+            </div>
           </Modal.Content>
 
           <Modal.Footer>
