@@ -6,6 +6,7 @@ type InputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'url';
 interface FieldProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: string;
+  showLabel?: boolean;
   error?: string;
   instruction?: string;
   type?: InputType;
@@ -14,6 +15,7 @@ interface FieldProps
 export default function Field({
   name,
   label = name,
+  showLabel = true,
   error,
   instruction,
   type = 'text',
@@ -31,16 +33,18 @@ export default function Field({
             ${className || ''}
         `}
     >
-      <span
-        className="
+      {showLabel && (
+        <span
+          className="
                 font-poppins
                 text-sm text-zinc-400 uppercase
                 group-focus-within:text-zinc-200
                 transition-colors duration-120 ease-in-out
             "
-      >
-        {label}
-      </span>
+        >
+          {label}
+        </span>
+      )}
       <input
         aria-describedby={
           error

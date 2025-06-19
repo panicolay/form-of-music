@@ -100,8 +100,8 @@ export default function EditUsernameModal({
                 required
                 className="flex-1"
                 error={error}
-                label="Username"
                 name="username"
+                showLabel={false}
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
