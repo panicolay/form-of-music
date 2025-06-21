@@ -6,26 +6,46 @@ Web project based on Next.js 15 and TypeScript.
 
 ## Tech stack
 
-- **Framework**: Next.js 15
-- **Language**: TypeScript
-- **Styling**: Tailwind 4
-- **Authentication**: Supabase
+- **Framework**: Next.js 15.3.2 (with Turbopack for dev)
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS 4 (with PostCSS)
+- **Authentication**: Supabase (with SSR support)
 - **Database**: Supabase
-- **Other dependencies**: see `package.json`
+- **UI Components**: Custom components with Radix UI 1.4.1
+- **Animations**: Motion 12.17.3
+- **Validation**: Zod 3.24.4
+- **Security**: Cloudflare Turnstile (react-turnstile)
+- **Styling Utilities**: Class Variance Authority (CVA)
+- **Code Quality**: ESLint 9, Prettier, Husky, Lint-staged
+- **Package Manager**: pnpm 10.12.1
 - **Deployment**: Vercel
 
 ---
 
 ## Project structure
 
-- `src/app/`: Main pages and routes (auth, random, etc.)
-- `src/components/`: Reusable components (layout, UI, SVG, etc.)
+- `src/app/`: App Router pages and routes
+  - `(auth)/`: Authentication pages (login, signup, logout)
+  - `[username]/`: Dynamic user profile pages with settings
+  - `forbidden/`: Access control pages
+- `src/components/`: Reusable components
+  - `ui/`: Base UI components (Button, Field, Modal)
+  - `layout/`: Layout components (Page, TopBar variants)
+  - `settings/`: Settings-specific components and modals
+  - `icons/`: Icon components
+  - `svg/`: Custom SVG illustrations
 - `src/context/`: React contexts for global state management
-- `src/emails/`: Email templates for Supabase
-- `src/lib/`: Utility functions and internal libraries
-- `src/types/`: Shared TypeScript types
-- `src/utils/`: Utility functions (e.g., Supabase integration)
-- `public/`: Publicly accessible static files
+  - User authentication context and provider
+- `src/emails/`: Email templates for Supabase authentication
+- `src/lib/`: Internal libraries and business logic
+  - User and profile management utilities
+- `src/types/`: Shared TypeScript type definitions
+- `src/utils/`: Utility functions and external integrations
+  - `supabase/`: Supabase client configuration (client, server, middleware)
+  - Username generation and validation utilities
+- `public/`: Static assets
+  - `avatars/defaults/`: Default user avatar images
+  - Brand assets and icons
 
 ---
 
