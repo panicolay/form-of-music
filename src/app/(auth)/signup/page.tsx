@@ -90,7 +90,7 @@ export default function SignUp() {
       </h2>
       {errors.global && (
         <div
-          className="p-4
+          className="w-full p-4
           border border-rose-500
           text-rose-500 text-sm
         "
