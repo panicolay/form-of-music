@@ -1,5 +1,6 @@
 # TODO
 
+- [ ] Créer un fichier utils pour les validations
 - [ ] Forbidden page message and illustrations
 - [ ] Improve email edition (feedback, redirections, errors)
 - [ ] Reset password

@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { notFound, redirect } from 'next/navigation';
-// TODO : notFound = 404?
 
 import { Page } from '@/components/layout';
 import { SettingsTable } from '@/components/settings';
