@@ -1,8 +1,13 @@
-import { z } from 'zod';
+import { validateEmail, validatePassword } from '@/utils/validations';
 
-import { emailSchema, passwordStrongSchema } from '@/utils/validations';
+export function validateSignupForm(email: string, password: string) {
+  const emailValidation = validateEmail(email);
+  const passwordValidation = validatePassword(password, true);
 
-export const signupSchema = z.object({
-  email: emailSchema,
-  password: passwordStrongSchema,
-});
+  return {
+    email: emailValidation.error,
+    password: passwordValidation.error,
+    global: '',
+    isValid: emailValidation.isValid && passwordValidation.isValid,
+  };
+}

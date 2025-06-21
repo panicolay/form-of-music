@@ -9,7 +9,7 @@ import { Page } from '@/components/layout';
 import { Button, Field } from '@/components/ui';
 
 import { login } from './actions';
-import { loginSchema } from './validation';
+import { validateLoginForm } from './validation';
 
 const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!;
 
@@ -20,15 +20,7 @@ export default function LoginPage() {
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   function validate(email: string, password: string) {
-    const result = loginSchema.safeParse({ email, password });
-    const newErrors = { email: '', password: '', global: '' };
-
-    if (!result.success) {
-      const errors = result.error.flatten().fieldErrors;
-      newErrors.email = errors.email?.[0] || '';
-      newErrors.password = errors.password?.[0] || '';
-    }
-    return newErrors;
+    return validateLoginForm(email, password);
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -78,7 +70,7 @@ export default function LoginPage() {
       </h2>
       {errors.global && (
         <div
-          className="p-4
+          className="w-full p-4
           border border-rose-500
           text-rose-500 text-sm
         "

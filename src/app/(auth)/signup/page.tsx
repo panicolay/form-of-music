@@ -10,7 +10,7 @@ import { Button, Field } from '@/components/ui';
 import { createClient } from '@/utils/supabase/client';
 
 import { signup } from './actions';
-import { signupSchema } from './validation';
+import { validateSignupForm } from './validation';
 
 const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!;
 
@@ -39,15 +39,7 @@ export default function SignUp() {
   }
 
   function validate(email: string, password: string) {
-    const result = signupSchema.safeParse({ email, password });
-    const newErrors = { email: '', password: '', global: '' };
-
-    if (!result.success) {
-      const errors = result.error.flatten().fieldErrors;
-      newErrors.email = errors.email?.[0] || '';
-      newErrors.password = errors.password?.[0] || '';
-    }
-    return newErrors;
+    return validateSignupForm(email, password);
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {

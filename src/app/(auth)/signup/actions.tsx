@@ -2,19 +2,12 @@
 
 import { createClient } from '@/utils/supabase/server';
 
-import { signupSchema } from './validation';
+import { validateSignupForm } from './validation';
 
 export async function signup(email: string, password: string, token: string) {
-  const result = signupSchema.safeParse({ email, password });
-  if (!result.success) {
-    const errors = result.error.flatten().fieldErrors;
-    return {
-      errors: {
-        email: errors.email?.[0] || '',
-        password: errors.password?.[0] || '',
-        global: '',
-      },
-    };
+  const validation = validateSignupForm(email, password);
+  if (!validation.isValid) {
+    return { errors: validation };
   }
 
   // Captcha verification

@@ -52,5 +52,4 @@ export function validatePassword(password: string, strong = false) {
   };
 }
 
-// TODO: add form validation helpers in dedicated file
 // TODO: add validation to settings page

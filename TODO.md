@@ -1,6 +1,7 @@
 # TODO
 
 - [ ] Créer un fichier utils pour les validations
+- [ ] Couleur de sélection du remplissage auto 1password illisible
 - [ ] Forbidden page message and illustrations
 - [ ] Improve email edition (feedback, redirections, errors)
 - [ ] Reset password
@@ -10,7 +11,6 @@
 - [ ] Add storybook
 - [ ] Error management for username at user creation
 - [ ] 404 page : pour un utilisateur connecté, redirigé vers not_found quand une page non protégée n'existe pas (plutôt que vers login)
-- [ ] Couleur de sélection du remplissage auto 1password illisible
 - [ ] Ajouter un effet de pulsation sur les éléments en focus
 
 Other todo can be in related file.
